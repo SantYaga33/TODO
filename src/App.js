@@ -19,7 +19,6 @@ class App extends React.Component {
     }
     onAddTaskClick = () => {
         let newText =  this.newTaskTitleRef.current.value !== '' ?  this.newTaskTitleRef.current.value: 'Нет Заголовка';
-
         let newTask = {
             title: newText,
             isDone: true ,
@@ -39,14 +38,7 @@ class App extends React.Component {
         return (
             <div className="App">
                 <div className="todoList">
-                    {/*<TodoListHeader />*/}
-                    <div className="todoList-header">
-                        <h3 className="todoList-header__title">What to Learn</h3>
-                        <div className="todoList-newTaskForm">
-                            <input ref={this.newTaskTitleRef} type="text" placeholder="New task name"/>
-                            <button onClick={ this.onAddTaskClick }>Add</button>
-                        </div>
-                    </div>
+                    <TodoListHeader onAddTaskClick = {this.onAddTaskClick} refTitleTask = {this.newTaskTitleRef}/>
                     <TodoListTasks  tasks={this.state.tasks}/>
                     <TodoListFooter filterValue={this.state.filterValue} />
                 </div>
