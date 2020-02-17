@@ -2,7 +2,7 @@
   "name": "todo",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://github.com/SantYaga33/TODO#readme",
+  "homepage": "https://github.com/SantYaga33/TODO",
   "dependencies": {
     "gh-pages": "^2.2.0",
     "react": "^16.8.6",
