@@ -51,8 +51,7 @@ class App extends React.Component {
 			tasks: newTasks
 		})
 	};
-
-
+	
 	render = () => {
 		return (
 			<div className="App">
@@ -67,9 +66,8 @@ class App extends React.Component {
 				</div>
 			</div>
 		);
-	}
+	};
 
-	export
-	default
-	App;
+}
 
+export default App;
