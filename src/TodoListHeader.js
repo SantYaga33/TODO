@@ -2,7 +2,6 @@ import React from 'react';
 
 class TodoListHeader extends React.Component {
 
-
 	onAddTaskClick = () => {
 		let newText = this.props.refTitleTask.current.value !== '' ?
 			this.props.refTitleTask.current.value : 'Нет Заголовка';
