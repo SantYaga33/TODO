@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/SantYaga33/TODO/static/css/main.9bce1d41.chunk.css",
+    "main.js": "/SantYaga33/TODO/static/js/main.8fd098a8.chunk.js",
+    "main.js.map": "/SantYaga33/TODO/static/js/main.8fd098a8.chunk.js.map",
+    "runtime-main.js": "/SantYaga33/TODO/static/js/runtime-main.0febd7cb.js",
+    "runtime-main.js.map": "/SantYaga33/TODO/static/js/runtime-main.0febd7cb.js.map",
+    "static/js/2.13a8a22c.chunk.js": "/SantYaga33/TODO/static/js/2.13a8a22c.chunk.js",
+    "static/js/2.13a8a22c.chunk.js.map": "/SantYaga33/TODO/static/js/2.13a8a22c.chunk.js.map",
+    "index.html": "/SantYaga33/TODO/index.html",
+    "precache-manifest.ea480a824309069a660adfb12bd29cf1.js": "/SantYaga33/TODO/precache-manifest.ea480a824309069a660adfb12bd29cf1.js",
+    "service-worker.js": "/SantYaga33/TODO/service-worker.js",
+    "static/css/main.9bce1d41.chunk.css.map": "/SantYaga33/TODO/static/css/main.9bce1d41.chunk.css.map",
+    "static/js/2.13a8a22c.chunk.js.LICENSE.txt": "/SantYaga33/TODO/static/js/2.13a8a22c.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0febd7cb.js",
+    "static/js/2.13a8a22c.chunk.js",
+    "static/css/main.9bce1d41.chunk.css",
+    "static/js/main.8fd098a8.chunk.js"
+  ]
+}
