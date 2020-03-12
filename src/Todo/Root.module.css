@@ -1,0 +1,324 @@
+.root_wrap {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-sizing: border-box;
+
+    border: 1px solid;
+
+}
+button, input {
+    padding: 0;
+    margin: 0;
+    outline: none;
+    border: none;
+
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 10px;
+
+    border: 1px solid blue;
+
+}
+.header_title {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid;
+}
+.header_logo {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    border: 1px solid;
+}
+.header_buttons {
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: inherit;
+
+    border: 1px solid;
+}
+
+.header_buttons button {
+    width: 33%;
+    border-right: 1px solid;
+    height: inherit;
+}
+/*==== анимация */
+
+@-webkit-keyframes hvr-bob {
+    0% {
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px);
+    }
+    50% {
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+    }
+    100% {
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px);
+    }
+}
+@keyframes hvr-bob {
+    0% {
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px);
+    }
+    50% {
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+    }
+    100% {
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px);
+    }
+}
+@-webkit-keyframes hvr-bob-float {
+    100% {
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px);
+    }
+}
+@keyframes hvr-bob-float {
+    100% {
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px);
+    }
+}
+.header_buttons__item {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.header_buttons__item:hover, .header_buttons__item:focus, .header_buttons__item:active {
+    -webkit-animation-name: hvr-bob-float, hvr-bob;
+    animation-name: hvr-bob-float, hvr-bob;
+    -webkit-animation-duration: .3s, 1.5s;
+    animation-duration: .3s, 1.5s;
+    -webkit-animation-delay: 0s, .3s;
+    animation-delay: 0s, .3s;
+    -webkit-animation-timing-function: ease-out, ease-in-out;
+    animation-timing-function: ease-out, ease-in-out;
+    -webkit-animation-iteration-count: 1, infinite;
+    animation-iteration-count: 1, infinite;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-direction: normal, alternate;
+    animation-direction: normal, alternate;
+}
+
+/*====== */
+
+
+
+.tasks_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px 0;
+    width: 100%;
+    height: 600px;
+
+
+    border: 1px solid;
+}
+.tasks_input {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    height: 40px;
+
+}
+.tasks_input input {
+    width: 80%;
+    padding: 0;
+    margin: 0;
+    height: inherit;
+
+    border: 1px solid;
+
+}
+
+
+.tasks_input button {
+    width: 20%;
+    height: inherit;
+
+
+    border: 1px solid;
+}
+.tasks_item {
+    width: 90%;
+    height: 60px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    border: 1px solid red;
+}
+.task_title {
+    width: 68%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: inherit;
+
+    border: 1px solid;
+}
+.task_buttons {
+    width: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: inherit;
+
+    border: 1px solid;
+}
+.task_buttons button {
+    width: 100%;
+    height: 33%;
+
+    border-bottom: 1px solid;
+}
+
+.task_done {
+    width: 8%;
+    display: flex;
+    align-items: center;
+    height: inherit;
+}
+
+.task_done input {
+    width: 100%;
+}
+
+.task_delete {
+    width: 8%;
+    display: flex;
+    align-items: center;
+    height: inherit;
+}
+
+.task_delete button {
+    width: 100%;
+    height: inherit;
+}
+
+
+/*==== анимация */
+
+@-webkit-keyframes hvr-bob {
+    0% {
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px);
+    }
+    50% {
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+    }
+    100% {
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px);
+    }
+}
+@keyframes hvr-bob {
+    0% {
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px);
+    }
+    50% {
+        -webkit-transform: translateY(-4px);
+        transform: translateY(-4px);
+    }
+    100% {
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px);
+    }
+}
+@-webkit-keyframes hvr-bob-float {
+    100% {
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px);
+    }
+}
+@keyframes hvr-bob-float {
+    100% {
+        -webkit-transform: translateY(-8px);
+        transform: translateY(-8px);
+    }
+}
+.hvr-bob {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.hvr-bob:hover, .hvr-bob:focus, .hvr-bob:active {
+    -webkit-animation-name: hvr-bob-float, hvr-bob;
+    animation-name: hvr-bob-float, hvr-bob;
+    -webkit-animation-duration: .3s, 1.5s;
+    animation-duration: .3s, 1.5s;
+    -webkit-animation-delay: 0s, .3s;
+    animation-delay: 0s, .3s;
+    -webkit-animation-timing-function: ease-out, ease-in-out;
+    animation-timing-function: ease-out, ease-in-out;
+    -webkit-animation-iteration-count: 1, infinite;
+    animation-iteration-count: 1, infinite;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+    -webkit-animation-direction: normal, alternate;
+    animation-direction: normal, alternate;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
