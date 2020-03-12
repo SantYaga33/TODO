@@ -10,10 +10,10 @@
     margin-top: 50px;
     border-radius: 5px;
     margin-bottom: 17px;
+    border:1px  solid  #363636;
     background: #424242 none repeat scroll 0 0;
 
 
-    border: 1px solid;
 
 }
 button, input {
@@ -31,7 +31,9 @@ button, input {
     align-items: center;
     width: 100%;
     height: 50px;
+    /*padding: 5px ;*/
     margin-bottom: 10px;
+    /*border:1px  solid  #363636;*/
 
 
 
@@ -50,11 +52,20 @@ button, input {
 .header_logo {
     width: 15%;
     display: flex;
-    justify-content: center;
+    height: inherit;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
+    color: #088dcd;
 
-    border: 1px solid;
+}
+.header_logo__button {
+    color: #088dcd;
+    background-color: inherit;
+    cursor: pointer;
+    padding: 2px 5px;
+    border: 1px solid #088dcd;
+
 }
 .header_buttons {
     width: 40%;
@@ -62,7 +73,6 @@ button, input {
     justify-content: center;
     align-items: center;
     height: inherit;
-
 
 }
 
@@ -148,19 +158,19 @@ button, input {
 /*====== */
 
 .tasks_wrap {
+    min-height: 600px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 10px 0;
-    width: 100%;
-    height: 600px;
+    padding: 15px 0;
+    overflow: auto;
+    border:1px  solid  #363636;
 
     border-radius: 5px;
     background: #424242 none repeat scroll 0 0;
 
-
-
-    border: 1px solid;
 }
 .tasks_input {
     width: 90%;
@@ -173,22 +183,62 @@ button, input {
     width: 80%;
     padding: 0;
     margin: 0;
+    padding-left: 20px;
     height: inherit;
     background-color: #393939;
     color: #ccc;
-
-    border: 1px solid;
-
 }
 
 
 .tasks_input button {
     width: 20%;
     height: inherit;
+    background-color: #088dcd;
 
-
-    border: 1px solid;
 }
+
+/*===== анимация для кнопки добавдления task*/
+@-webkit-keyframes hvr-push {
+    50% {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+@keyframes hvr-push {
+    50% {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+.tasks_button {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+.tasks_button:active {
+    -webkit-animation-name: hvr-push;
+    animation-name: hvr-push;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
+}
+
+/*=======*/
+
+
 .tasks_item {
     width: 90%;
     height: 60px;

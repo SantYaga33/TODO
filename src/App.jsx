@@ -3,8 +3,12 @@ import './App.css';
 import TodoListHeader from "./TodoListHeader";
 import TodoListTasks from "./TodoListTasks";
 import TodoListFooter from "./TodoListFooter";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
 import Root from "./Todo/Root";
 
+
+library.add (fab);
 
 class App extends React.Component {
 	constructor(props) {
