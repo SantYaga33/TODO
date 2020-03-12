@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Root.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import classNames from 'classnames';
 
 class Root extends React.Component {
 	constructor (props) {
@@ -35,7 +35,7 @@ class Root extends React.Component {
 					<div className={styles.tasks_item}>
 						<div className={styles.tasks_title__wrap}>
 							<div className={styles.task_title}>title</div>
-							<div className={styles.liquid}></div>
+							<div className={classNames(styles.liquid, styles.liquid_red )}></div>
 						</div>
 						<div className={styles.task_buttons}>
 							<button className={styles.task_button__red}>high</button>
@@ -53,7 +53,7 @@ class Root extends React.Component {
 					<div className={styles.tasks_item}>
 						<div className={styles.tasks_title__wrap}>
 							<div className={styles.task_title}>title</div>
-							<div className={styles.liquid}></div>
+							<div className={classNames(styles.liquid, styles.liquid_green )}></div>
 						</div>
 						<div className={styles.task_buttons}>
 							<button className={styles.task_button__red}>high</button>
@@ -72,7 +72,7 @@ class Root extends React.Component {
 					<div className={styles.tasks_item}>
 						<div className={styles.tasks_title__wrap}>
 							<div className={styles.task_title}>title</div>
-							<div className={styles.liquid}></div>
+							<div className={classNames(styles.liquid, styles.liquid_yellow )}></div>
 						</div>
 						<div className={styles.task_buttons}>
 							<button className={styles.task_button__red}>high</button>
