@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './Root.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { fab } from '@fortawesome/free-brands-svg-icons'
 
 class Root extends React.Component {
 	constructor(props) {
@@ -10,10 +12,10 @@ class Root extends React.Component {
 		return (
 			<div className={styles.root_wrap}>
 				<div className={styles.header}>
-					<div className={styles.header_title}>a</div>
+					<div className={styles.header_title}> New Tasks </div>
 					<div className={styles.header_logo}>icon
 						<div className={styles.header_logo__icon}>
-
+							<FontAwesomeIcon icon={['fab', 'sith']} spin size ='lg' />
 						</div>
 						<div className={styles.header_logo__hide}>
 							<button> hide</button>
@@ -33,9 +35,9 @@ class Root extends React.Component {
 					<div className={styles.tasks_item}>
 						<div className={styles.task_title}>title</div>
 						<div className={styles.task_buttons}>
-							<button>high</button>
-							<button>medium</button>
-							<button>low</button>
+							<button className={styles.task_buttons__item}>high</button>
+							<button className={styles.task_buttons__item}>medium</button>
+							<button className={styles.task_buttons__item}>low</button>
 						</div>
 						<div className={styles.task_done}>
 							<input type="checkbox"/>

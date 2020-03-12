@@ -7,6 +7,12 @@
     padding: 10px;
     box-sizing: border-box;
 
+    margin-top: 50px;
+    border-radius: 5px;
+    margin-bottom: 17px;
+    background: #424242 none repeat scroll 0 0;
+
+
     border: 1px solid;
 
 }
@@ -27,7 +33,7 @@ button, input {
     height: 50px;
     margin-bottom: 10px;
 
-    border: 1px solid blue;
+
 
 }
 .header_title {
@@ -35,8 +41,11 @@ button, input {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #088dcd;
+    font-size: 22px;
+    font-weight: 700;
 
-    border: 1px solid;
+
 }
 .header_logo {
     width: 15%;
@@ -50,19 +59,23 @@ button, input {
 .header_buttons {
     width: 40%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     height: inherit;
 
-    border: 1px solid;
+
 }
 
 .header_buttons button {
     width: 33%;
-    border-right: 1px solid;
+    border-right: 1px solid #424242;
+    border-left:  1px solid #424242;
     height: inherit;
+    background-color: #088dcd;
+    font-size: 16px;
+    cursor: pointer;
 }
-/*==== анимация */
+/*==== анимация кнопок в header*/
 
 @-webkit-keyframes hvr-bob {
     0% {
@@ -114,6 +127,10 @@ button, input {
 .header_buttons__item:hover, .header_buttons__item:focus, .header_buttons__item:active {
     -webkit-animation-name: hvr-bob-float, hvr-bob;
     animation-name: hvr-bob-float, hvr-bob;
+    color: #ccc;
+    border-color: transparent;
+    box-shadow: 0 8px 8px #31383c;
+
     -webkit-animation-duration: .3s, 1.5s;
     animation-duration: .3s, 1.5s;
     -webkit-animation-delay: 0s, .3s;
@@ -130,8 +147,6 @@ button, input {
 
 /*====== */
 
-
-
 .tasks_wrap {
     display: flex;
     flex-direction: column;
@@ -139,6 +154,10 @@ button, input {
     margin: 10px 0;
     width: 100%;
     height: 600px;
+
+    border-radius: 5px;
+    background: #424242 none repeat scroll 0 0;
+
 
 
     border: 1px solid;
@@ -155,6 +174,8 @@ button, input {
     padding: 0;
     margin: 0;
     height: inherit;
+    background-color: #393939;
+    color: #ccc;
 
     border: 1px solid;
 
@@ -203,6 +224,27 @@ button, input {
 
     border-bottom: 1px solid;
 }
+/*==== анимация кнопок в task */
+.task_buttons__item {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: box-shadow, transform;
+    transition-property: box-shadow, transform;
+}
+.task_buttons__item:hover, .task_buttons__item:focus, .task_buttons__item:active {
+    box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.5);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+/*=======*/
+
+
 
 .task_done {
     width: 8%;
