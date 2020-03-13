@@ -14,7 +14,7 @@ class Root extends React.Component {
 		return (
 			<div className={styles.root_wrap}>
 				<Header state={this.props.state} changeFilter={this.props.changeFilter}/>
-				<TodoTasks addTask={this.props.addTask} tasks={this.props.tasks}
+				<TodoTasks addTask={this.props.addTask} tasks={this.props.tasks} deleteTask={this.props.deleteTask}
 						   changeTitle={this.props.changeTitle} changeStatus={this.props.changeStatus}/>
 			</div>
 		);

@@ -38,7 +38,6 @@ class TodoListTask extends React.Component {
 				{this.props.task.title}, {this.props.task.priority}</span>
 				}
 
-
 			</div>
 		);
 	}

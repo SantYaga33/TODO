@@ -87,27 +87,34 @@ class App extends React.Component {
 
 	};
 
+	deleteTask = (taskId) => {
+		let newTasks = this.state.tasks.filter (t =>  t.id !== taskId);
+		this.setState ({
+			tasks: newTasks
+		}, () => {this.saveState ();})
+	};
+
 	render = () => {
 		return (
 			<div className="App">
 				<div className="todoList">
 					<Root state={this.state} addTask={this.addTask} changeFilter={this.changeFilter}
-						  changeTitle={this.changeTitle} changeStatus={this.changeStatus}
+						  changeTitle={this.changeTitle} changeStatus={this.changeStatus} deleteTask={this.deleteTask}
 						  tasks={this.state.tasks.filter (t => {
 							  return this.state.filterValue === "Active" && t.isDone === false ||
 								  this.state.filterValue === "Completed" && t.isDone === true ||
 								  this.state.filterValue === "All"
 						  })}/>
-					<div className='todo_wrap'>
-						<TodoListHeader addTask={this.addTask}/>
-						<TodoListTasks changeTitle={this.changeTitle} changeStatus={this.changeStatus}
-									   tasks={this.state.tasks.filter (t => {
-										   return this.state.filterValue === "Active" && t.isDone === false ||
-											   this.state.filterValue === "Completed" && t.isDone === true ||
-											   this.state.filterValue === "All"
-									   })}/>
-						<TodoListFooter changeFilter={this.changeFilter} filterValue={this.state.filterValue}/>
-					</div>
+					{/*<div className='todo_wrap'>*/}
+					{/*	<TodoListHeader addTask={this.addTask}/>*/}
+					{/*	<TodoListTasks changeTitle={this.changeTitle} changeStatus={this.changeStatus}*/}
+					{/*				   tasks={this.state.tasks.filter (t => {*/}
+					{/*					   return this.state.filterValue === "Active" && t.isDone === false ||*/}
+					{/*						   this.state.filterValue === "Completed" && t.isDone === true ||*/}
+					{/*						   this.state.filterValue === "All"*/}
+					{/*				   })}/>*/}
+					{/*	<TodoListFooter changeFilter={this.changeFilter} filterValue={this.state.filterValue}/>*/}
+					{/*</div>*/}
 				</div>
 			</div>
 		);
