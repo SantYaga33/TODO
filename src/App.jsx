@@ -17,9 +17,28 @@ class App extends React.Component {
 
 	state = {
 
-		tasks: [],
+		tasks: [
+			{
+				id: 0,
+				title: 'Example',
+				isDone: false,
+				priority: 'high'
+			},
+			{
+				id: 1,
+				title: 'Example',
+				isDone: false,
+				priority: 'low'
+			},
+			{
+				id: 2,
+				title: 'Example',
+				isDone: true,
+				priority: 'medium'
+			},
+		],
 		filterValue: "All",
-		nextTaskId: 0,
+		nextTaskId: 3,
 	};
 
 	componentDidMount () {
@@ -33,9 +52,28 @@ class App extends React.Component {
 
 	restoreState = () => {
 		let state = {
-			tasks: [],
+			tasks: [
+				{
+					id: 0,
+					title: 'Example',
+					isDone: false,
+					priority: 'high'
+				},
+				{
+					id: 1,
+					title: 'Example',
+					isDone: false,
+					priority: 'low'
+				},
+				{
+					id: 2,
+					title: 'Example',
+					isDone: true,
+					priority: 'medium'
+				},
+			],
 			filterValue: 'All',
-			nextTaskId: 0,
+			nextTaskId: 3,
 		};
 		let stateAsString = localStorage.getItem ('our-state');
 		if ( stateAsString !== null ) {
@@ -86,6 +124,10 @@ class App extends React.Component {
 		this.changeTask (taskId, { title: title });
 
 	};
+	changePriority = (taskId, priority) => {
+		this.changeTask (taskId, { priority: priority });
+
+	};
 
 	deleteTask = (taskId) => {
 		let newTasks = this.state.tasks.filter (t =>  t.id !== taskId);
@@ -100,6 +142,7 @@ class App extends React.Component {
 				<div className="todoList">
 					<Root state={this.state} addTask={this.addTask} changeFilter={this.changeFilter}
 						  changeTitle={this.changeTitle} changeStatus={this.changeStatus} deleteTask={this.deleteTask}
+						  changePriority={this.changePriority}
 						  tasks={this.state.tasks.filter (t => {
 							  return this.state.filterValue === "Active" && t.isDone === false ||
 								  this.state.filterValue === "Completed" && t.isDone === true ||

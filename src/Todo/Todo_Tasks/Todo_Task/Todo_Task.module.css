@@ -58,7 +58,7 @@
     background: #ffcc00;
 }
 
-.tasks_title__wrap .liquid:before, a .liquid:after{
+.tasks_title__wrap .liquid:before, .liquid:after{
     content: "";
     position: absolute;
     top: -72px;
@@ -67,7 +67,7 @@
     left: 50%;
     transform: translate(-50%, -75%);
 }
-.tasks_title__wrap .liquid::before{
+.tasks_title__wrap .liquid:before{
     border-radius: 45%;
     background-color: rgba(66, 66, 66, 1);
     animation: float 8s linear infinite;

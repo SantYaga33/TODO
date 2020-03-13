@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './Todo_Task.module.css';
 import classNames from "classnames";
-import TodoTasks from "../Todo_Tasks";
 
 
 class TodoTask extends React.Component {
@@ -20,6 +19,15 @@ class TodoTask extends React.Component {
 	onTitleChange = (e) => {
 		this.props.changeTitle (this.props.task.id, e.currentTarget.value)
 	};
+	onChangePriorityHigh = () => {
+		this.props.changePriority (this.props.task.id, 'high');
+	};
+	onChangePriorityMedium = () => {
+		this.props.changePriority (this.props.task.id, 'medium');
+	};
+	onChangePriorityLow = () => {
+		this.props.changePriority (this.props.task.id, 'low');
+	};
 
 	activeEditorMode = () => {
 		this.setState ({
@@ -33,11 +41,11 @@ class TodoTask extends React.Component {
 	};
 
 	onDeleteTask = (e) => {
-		this.props.deleteTask(this.props.task.id)
+		this.props.deleteTask (this.props.task.id)
 	};
 	render = () => {
 		return (
-			<div className={styles.tasks_item} id={this.props.id} >
+			<div className={styles.tasks_item} id={this.props.id} data-priority={this.props.priority}>
 				<div className={styles.tasks_title__wrap}>
 
 					{this.state.editMode
@@ -50,9 +58,12 @@ class TodoTask extends React.Component {
 					<div className={classNames (styles.liquid, styles.liquid_red)}></div>
 				</div>
 				<div className={styles.task_buttons}>
-					<button  className={styles.task_button__red}>high</button>
-					<button  className={styles.task_button__green}>medium</button>
-					<button  className={styles.task_button__yellow}>low</button>
+					<button className={styles.task_button__red}
+							onClick={this.onChangePriorityHigh}>high</button>
+					<button className={styles.task_button__green}
+							onClick={this.onChangePriorityMedium}>medium</button>
+					<button className={styles.task_button__yellow}
+							onClick={this.onChangePriorityLow}>low</button>
 				</div>
 				<div className={styles.task_done}>
 					<input type="checkbox" checked={this.props.task.isDone}
