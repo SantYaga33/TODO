@@ -7,19 +7,20 @@
     margin: 10px 0;
     padding: 15px 0;
     overflow: auto;
-    border:1px  solid  #363636;
-
+    border: 1px solid #363636;
     border-radius: 5px;
     background: #424242 none repeat scroll 0 0;
-
 }
+
 .tasks_input {
     width: 90%;
     display: flex;
     align-items: center;
     height: 40px;
+    box-sizing: border-box;
 
 }
+
 .tasks_input input {
     width: 80%;
     padding: 0;
@@ -28,15 +29,18 @@
     height: inherit;
     background-color: #393939;
     color: #ccc;
+    box-sizing: border-box;
+    border: 1px solid transparent;
 }
-
+.tasks_input  .inputError  {
+    border: 1px solid red;
+}
 
 .tasks_input button {
     width: 20%;
     height: inherit;
     background-color: #088dcd;
     cursor: pointer;
-
 }
 
 /*===== анимация для кнопки добавдления task*/
@@ -50,6 +54,7 @@
         transform: scale(1);
     }
 }
+
 @keyframes hvr-push {
     50% {
         -webkit-transform: scale(0.8);
@@ -60,6 +65,7 @@
         transform: scale(1);
     }
 }
+
 .tasks_button {
     display: inline-block;
     vertical-align: middle;
@@ -67,6 +73,7 @@
     transform: perspective(1px) translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
+
 .tasks_button:active {
     -webkit-animation-name: hvr-push;
     animation-name: hvr-push;
@@ -87,8 +94,9 @@
     align-items: center;
     justify-content: space-between;
 
-    border:1px  solid  #363636;
+    border: 1px solid #363636;
 }
+
 .task_title {
     width: 68%;
     display: flex;
@@ -110,6 +118,7 @@
     text-transform: uppercase;
     overflow: hidden;
 }
+
 .tasks_title__wrap .task_title {
     position: relative;
     z-index: 1;
@@ -120,7 +129,8 @@
     font-weight: bold;
     overflow: hidden;
 }
-.tasks_title__wrap .liquid{
+
+.tasks_title__wrap .liquid {
     position: absolute;
     overflow: hidden;
     width: 100%;
@@ -134,19 +144,20 @@
     /*box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);*/
     transition: 0.3s;
 }
+
 .tasks_title__wrap .liquid_red {
     background: #ff0066;
 }
+
 .tasks_title__wrap .liquid_green {
     background: #33cc33;
 }
+
 .tasks_title__wrap .liquid_yellow {
     background: #ffcc00;
 }
 
-
-
-.tasks_title__wrap .liquid:before, a .liquid:after{
+.tasks_title__wrap .liquid:before, a .liquid:after {
     content: "";
     position: absolute;
     top: -72px;
@@ -156,21 +167,24 @@
     left: 50%;
     transform: translate(-50%, -75%);
 }
-.tasks_title__wrap .liquid::before{
+
+.tasks_title__wrap .liquid::before {
     border-radius: 45%;
     background-color: rgba(66, 66, 66, 1);
     animation: float 8s linear infinite;
 }
-.tasks_title__wrap .liquid:after{
+
+.tasks_title__wrap .liquid:after {
     border-radius: 40%;
     background: rgba(66, 66, 66, .5);
     animation: float 8s linear infinite;
 }
+
 @keyframes float {
-    0%{
-        transform: translate(-50%, -75%)rotate(0deg);
+    0% {
+        transform: translate(-50%, -75%) rotate(0deg);
     }
-    100%{
+    100% {
         transform: translate(-50%, -75%) rotate(360deg);
     }
 }
@@ -185,6 +199,7 @@
     height: inherit;
 
 }
+
 .task_buttons button {
     width: 100%;
     display: flex;
@@ -197,14 +212,17 @@
     border-left: 1px solid #363636;
 
 }
+
 .task_button__red {
     background-color: #ff0066;
 }
+
 .task_button__green {
     background-color: #33cc33;
 }
+
 .task_button__yellow {
-    background-color:  #ffcc00;
+    background-color: #ffcc00;
 }
 
 /*==== анимация кнопок в task */
@@ -218,6 +236,7 @@
         transform: scale(1);
     }
 }
+
 @keyframes hvr-push {
     50% {
         -webkit-transform: scale(0.8);
@@ -228,6 +247,7 @@
         transform: scale(1);
     }
 }
+
 .task_buttons button {
     display: inline-block;
     vertical-align: middle;
@@ -235,6 +255,7 @@
     transform: perspective(1px) translateZ(0);
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
+
 .task_buttons button:active {
     -webkit-animation-name: hvr-push;
     animation-name: hvr-push;
@@ -246,11 +267,7 @@
     animation-iteration-count: 1;
 }
 
-
 /*=======*/
-
-
-
 .task_done {
     width: 8%;
     display: flex;
@@ -274,7 +291,6 @@
     height: inherit;
     background-color: #088dcd;
     cursor: pointer;
-
 }
 
 /*===== анимация кнопки delete */
@@ -292,6 +308,7 @@
     -webkit-transition-duration: 0.3s;
     transition-duration: 0.3s;
 }
+
 .task_delete button:before {
     content: "";
     position: absolute;
@@ -312,9 +329,11 @@
     -webkit-transition-timing-function: ease-out;
     transition-timing-function: ease-out;
 }
+
 .task_delete button:hover, .task_delete button:focus, .task_delete button:active {
     color: white;
 }
+
 .task_delete button:hover:before, .task_delete button:focus:before, .task_delete button:active:before {
     -webkit-transform: scaleX(1);
     transform: scaleX(1);

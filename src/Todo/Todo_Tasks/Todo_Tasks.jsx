@@ -3,18 +3,81 @@ import styles from './Todo_Tasks.module.css';
 import TodoTask from "./Todo_Task/Todo_Task";
 import classNames from 'classnames';
 
+
 class TodoTasks extends React.Component {
 
 	constructor (props) {
 		super (props);
 	}
 
+	state = {
+		error: false,
+		title: ''
+	};
+
+	onAddTaskClick = () => {
+		let newText = this.state.title;
+		this.setState ({
+			title: ''
+		});
+		if ( newText === '' ) {
+			this.setState ({
+				error: true
+			});
+		} else {
+			this.setState ({
+				error: false
+			});
+			this.props.addTask (newText);
+		}
+
+	};
+	onAddTaskKeyPress = (e) => {
+		if ( e.key === "Enter" ) {
+			let newText = this.state.title;
+			this.setState ({
+				title: ''
+			});
+			if ( newText === '' ) {
+				this.setState ({
+					error: true
+				});
+			} else {
+				this.setState ({
+					error: false
+				});
+				this.props.addTask (newText);
+			}
+
+		}
+	};
+
+	onTitleChange = (e) => {
+		this.setState ({
+			error: false,
+			title: e.currentTarget.value
+		});
+
+	};
+
+
+	errorClass = styles.inputError;
+
 	render = () => {
+
+		let tasksElements = this.props.tasks.map(task => {
+			return (
+				<TodoTask  changeStatus={this.props.changeStatus} key={task.id}
+						   task={task} changeTitle={this.props.changeTitle}/>
+			)
+		});
 		return (
 			<div className={styles.tasks_wrap}>
 				<div className={styles.tasks_input}>
-					<input type="text" placeholder='Enter task name'/>
-					<button className={styles.tasks_button}>add</button>
+					<input className={this.state.error ? this.errorClass : ''} value={this.state.title}
+						   type="text" placeholder='Enter task name'  onKeyPress={this.onAddTaskKeyPress}
+						   onChange={this.onTitleChange}/>
+					<button className={styles.tasks_button} onClick={this.onAddTaskClick}>add</button>
 				</div>
 				<div className={styles.tasks_item}>
 					<div className={styles.tasks_title__wrap}>
@@ -67,8 +130,7 @@ class TodoTasks extends React.Component {
 						<button>del</button>
 					</div>
 				</div>
-				<TodoTask/>
-				<TodoTask/>
+				{tasksElements}
 			</div>
 		);
 	};
