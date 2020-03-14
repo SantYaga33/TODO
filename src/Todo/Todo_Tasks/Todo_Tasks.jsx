@@ -63,6 +63,7 @@ class TodoTasks extends React.Component {
 
 	errorClass = styles.inputError;
 
+
 	render = () => {
 
 		let tasksElements = this.props.tasks.map(task => {
@@ -72,16 +73,18 @@ class TodoTasks extends React.Component {
 						   changePriority={this.props.changePriority}
 						   classForPriority={task.priority === 'high'? classNames (styles.liquid, styles.liquid_red)
 						   : task.priority === 'medium'? classNames (styles.liquid, styles.liquid_green) :
-						   classNames (styles.liquid, styles.liquid_yellow)} />
+						   classNames (styles.liquid, styles.liquid_yellow)}/>
 			)
 		});
 		return (
 			<div className={styles.tasks_wrap}>
-				<div className={styles.tasks_input}>
-					<input className={this.state.error ? this.errorClass : ''} value={this.state.title}
-						   type="text" placeholder='Enter task name'  onKeyPress={this.onAddTaskKeyPress}
-						   onChange={this.onTitleChange}/>
-					<button className={styles.tasks_button} onClick={this.onAddTaskClick}>add</button>
+				<div className={styles.tasks_wrap__input}>
+					<div className={styles.tasks_input}>
+						<input className={this.state.error ? this.errorClass : ''} value={this.state.title}
+							   type="text" placeholder='Enter task name'  onKeyPress={this.onAddTaskKeyPress}
+							   onChange={this.onTitleChange}/>
+						<button className={styles.tasks_button} onClick={this.onAddTaskClick}>add</button>
+					</div>
 				</div>
 				<div className={styles.tasks_item}>
 					<div className={styles.tasks_title__wrap}>

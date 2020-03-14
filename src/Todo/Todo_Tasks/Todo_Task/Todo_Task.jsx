@@ -55,7 +55,7 @@ class TodoTask extends React.Component {
 						:
 						<div className={styles.task_title} onClick={this.activeEditorMode}>{this.props.task.title}</div>
 					}
-					<div className={classNames (styles.liquid, styles.liquid_red)}></div>
+					<div className={classNames (styles.liquid, styles.liquid_green)}></div>
 				</div>
 				<div className={styles.task_buttons}>
 					<button className={styles.task_button__red}

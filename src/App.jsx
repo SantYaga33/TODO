@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { saveState,restoreState } from './localStorage'
 import TodoListHeader from "./TodoListHeader";
 import TodoListTasks from "./TodoListTasks";
 import TodoListFooter from "./TodoListFooter";
@@ -43,6 +44,7 @@ class App extends React.Component {
 
 	componentDidMount () {
 		this.restoreState ();
+
 	};
 
 	saveState = () => {
