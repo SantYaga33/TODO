@@ -40,7 +40,7 @@ class TodoTask extends React.Component {
 		});
 	};
 
-	onDeleteTask = (e) => {
+	onDeleteTask = () => {
 		this.props.deleteTask (this.props.task.id)
 	};
 	render = () => {
@@ -55,7 +55,9 @@ class TodoTask extends React.Component {
 						:
 						<div className={styles.task_title} onClick={this.activeEditorMode}>{this.props.task.title}</div>
 					}
-					<div className={classNames (styles.liquid, styles.liquid_red)}></div>
+					<div className={this.props.priority === 'high'? classNames (styles.liquid, styles.liquid_red)
+							: this.props.priority === 'medium'? classNames (styles.liquid, styles.liquid_green) :
+							classNames (styles.liquid, styles.liquid_yellow)}></div>
 				</div>
 				<div className={styles.task_buttons}>
 					<button className={styles.task_button__red}
