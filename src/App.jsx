@@ -21,19 +21,19 @@ class App extends React.Component {
 		tasks: [
 			{
 				id: 0,
-				title: 'Example',
+				title: 'Example1',
 				isDone: false,
 				priority: 'high'
 			},
 			{
 				id: 1,
-				title: 'Example',
+				title: 'Example2',
 				isDone: false,
 				priority: 'low'
 			},
 			{
 				id: 2,
-				title: 'Example',
+				title: 'Example3',
 				isDone: true,
 				priority: 'medium'
 			},
@@ -43,46 +43,50 @@ class App extends React.Component {
 	};
 
 	componentDidMount () {
-		this.restoreState ();
-
-	};
-
-	saveState = () => {
-		let stateAsString = JSON.stringify (this.state);
-		localStorage.setItem ('our-state', stateAsString);
-	};
-
-	restoreState = () => {
-		let state = {
-			tasks: [
-				{
-					id: 0,
-					title: 'Example',
-					isDone: false,
-					priority: 'high'
-				},
-				{
-					id: 1,
-					title: 'Example',
-					isDone: false,
-					priority: 'low'
-				},
-				{
-					id: 2,
-					title: 'Example',
-					isDone: true,
-					priority: 'medium'
-				},
-			],
-			filterValue: 'All',
-			nextTaskId: 3,
-		};
-		let stateAsString = localStorage.getItem ('our-state');
-		if ( stateAsString !== null ) {
-			state = JSON.parse (stateAsString);
+		let newState = restoreState ();
+		if (!!newState){
+			this.setState(newState);
+		} else {
+			this.setState (this.state);
 		}
-		this.setState (state);
 	};
+
+	// saveState = () => {
+	// 	let stateAsString = JSON.stringify (this.state);
+	// 	localStorage.setItem ('our-state', stateAsString);
+	// };
+	//
+	// restoreState = () => {
+	// 	let state = {
+	// 		tasks: [
+	// 			{
+	// 				id: 0,
+	// 				title: 'Example',
+	// 				isDone: false,
+	// 				priority: 'high'
+	// 			},
+	// 			{
+	// 				id: 1,
+	// 				title: 'Example',
+	// 				isDone: false,
+	// 				priority: 'low'
+	// 			},
+	// 			{
+	// 				id: 2,
+	// 				title: 'Example',
+	// 				isDone: true,
+	// 				priority: 'medium'
+	// 			},
+	// 		],
+	// 		filterValue: 'All',
+	// 		nextTaskId: 3,
+	// 	};
+	// 	let stateAsString = localStorage.getItem ('our-state');
+	// 	if ( stateAsString !== null ) {
+	// 		state = JSON.parse (stateAsString);
+	// 	}
+	// 	this.setState (state);
+	// };
 
 	addTask = (title) => {
 		let newTask = {
@@ -96,14 +100,14 @@ class App extends React.Component {
 		this.setState ({
 			tasks: newTasks,
 			nextTaskId: this.state.nextTaskId + 1,
-		}, () => {this.saveState ();});
+		}, () => {saveState(this.state);});
 
 	};
 
 	changeFilter = (newFilterValue) => {
 		this.setState ({
 			filterValue: newFilterValue
-		}, () => {this.saveState ();})
+		}, () => {saveState(this.state);})
 	};
 	changeTask = (taskId, obj) => {
 		let newTasks = this.state.tasks.map (t => {
@@ -115,7 +119,7 @@ class App extends React.Component {
 		});
 		this.setState ({
 			tasks: newTasks
-		}, () => {this.saveState ();})
+		}, () => {saveState(this.state);})
 	};
 
 	changeStatus = (taskId, isDone) => {
@@ -135,7 +139,7 @@ class App extends React.Component {
 		let newTasks = this.state.tasks.filter (t =>  t.id !== taskId);
 		this.setState ({
 			tasks: newTasks
-		}, () => {this.saveState ();})
+		}, () => {saveState(this.state);})
 	};
 
 	render = () => {

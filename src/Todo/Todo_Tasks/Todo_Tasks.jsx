@@ -64,6 +64,7 @@ class TodoTasks extends React.Component {
 	errorClass = styles.inputError;
 
 
+
 	render = () => {
 
 		let tasksElements = this.props.tasks.map(task => {
@@ -72,8 +73,8 @@ class TodoTasks extends React.Component {
 						   task={task} changeTitle={this.props.changeTitle} deleteTask={this.props.deleteTask}
 						   changePriority={this.props.changePriority}
 						   classForPriority={task.priority === 'high'? classNames (styles.liquid, styles.liquid_red)
-						   : task.priority === 'medium'? classNames (styles.liquid, styles.liquid_green) :
-						   classNames (styles.liquid, styles.liquid_yellow)}/>
+							   : task.priority === 'medium'? classNames (styles.liquid, styles.liquid_green) :
+								   classNames (styles.liquid, styles.liquid_yellow)}/>
 			)
 		});
 		return (
