@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { saveState,restoreState } from './localStorage'
+import { saveState, restoreState } from './localStorage'
 import TodoListHeader from "./TodoListHeader";
 import TodoListTasks from "./TodoListTasks";
 import TodoListFooter from "./TodoListFooter";
@@ -43,12 +43,9 @@ class App extends React.Component {
 	};
 
 	componentDidMount () {
-		let newState = restoreState ();
-		if (!!newState){
-			this.setState(newState);
-		} else {
-			this.setState (this.state);
-		}
+		let state = restoreState (this.state);
+		this.setState (state);
+
 	};
 
 	// saveState = () => {
@@ -100,14 +97,14 @@ class App extends React.Component {
 		this.setState ({
 			tasks: newTasks,
 			nextTaskId: this.state.nextTaskId + 1,
-		}, () => {saveState(this.state);});
+		}, () => {saveState (this.state);});
 
 	};
 
 	changeFilter = (newFilterValue) => {
 		this.setState ({
 			filterValue: newFilterValue
-		}, () => {saveState(this.state);})
+		}, () => {saveState (this.state);})
 	};
 	changeTask = (taskId, obj) => {
 		let newTasks = this.state.tasks.map (t => {
@@ -119,7 +116,7 @@ class App extends React.Component {
 		});
 		this.setState ({
 			tasks: newTasks
-		}, () => {saveState(this.state);})
+		}, () => {saveState (this.state);})
 	};
 
 	changeStatus = (taskId, isDone) => {
@@ -136,10 +133,10 @@ class App extends React.Component {
 	};
 
 	deleteTask = (taskId) => {
-		let newTasks = this.state.tasks.filter (t =>  t.id !== taskId);
+		let newTasks = this.state.tasks.filter (t => t.id !== taskId);
 		this.setState ({
 			tasks: newTasks
-		}, () => {saveState(this.state);})
+		}, () => {saveState (this.state);})
 	};
 
 	render = () => {
@@ -154,16 +151,16 @@ class App extends React.Component {
 								  this.state.filterValue === "Completed" && t.isDone === true ||
 								  this.state.filterValue === "All"
 						  })}/>
-					{/*<div className='todo_wrap'>*/}
-						{/*<TodoListHeader addTask={this.addTask}/>*/}
-						{/*<TodoListTasks changeTitle={this.changeTitle} changeStatus={this.changeStatus}*/}
-						{/*			   tasks={this.state.tasks.filter (t => {*/}
-						{/*				   return this.state.filterValue === "Active" && t.isDone === false ||*/}
-						{/*					   this.state.filterValue === "Completed" && t.isDone === true ||*/}
-						{/*					   this.state.filterValue === "All"*/}
-						{/*			   })}/>*/}
-						{/*<TodoListFooter changeFilter={this.changeFilter} filterValue={this.state.filterValue}/>*/}
-					{/*</div>*/}
+					<div className='todo_wrap'>
+						<TodoListHeader addTask={this.addTask}/>
+						<TodoListTasks changeTitle={this.changeTitle} changeStatus={this.changeStatus}
+									   tasks={this.state.tasks.filter (t => {
+										   return this.state.filterValue === "Active" && t.isDone === false ||
+											   this.state.filterValue === "Completed" && t.isDone === true ||
+											   this.state.filterValue === "All"
+									   })}/>
+						<TodoListFooter changeFilter={this.changeFilter} filterValue={this.state.filterValue}/>
+					</div>
 				</div>
 			</div>
 		);
