@@ -50,10 +50,11 @@ class TodoTask extends React.Component {
 
 					{this.state.editMode
 						? <input className={styles.input_onblur} onBlur={this.deactivateEditMode}
-								 onChange={this.onTitleChange}
+								 onChange={this.onTitleChange} type='text'  maxlength="25"
 								 value={this.props.task.title} autoFocus={true}/>
 						:
-						<div className={styles.task_title} onClick={this.activeEditorMode}>{this.props.task.title}</div>
+						<div className={styles.task_title} onClick={this.activeEditorMode}
+							 maxlength="16"	>{this.props.task.title}</div>
 					}
 					<div className={this.props.priority === 'high'? classNames (styles.liquid, styles.liquid_red)
 							: this.props.priority === 'medium'? classNames (styles.liquid, styles.liquid_green) :

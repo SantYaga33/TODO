@@ -74,7 +74,8 @@ class TodoTasks extends React.Component {
 					<div className={styles.tasks_input}>
 						<input className={this.state.error ? this.errorClass : ''} value={this.state.title}
 							   type="text" placeholder='Enter task name'  onKeyPress={this.onAddTaskKeyPress}
-							   onChange={this.onTitleChange}/>
+							   onChange={this.onTitleChange} maxlength="25" textOverflow='ellipsis'  whiteSpace='nowrap'
+						/>
 						<button className={styles.tasks_button} onClick={this.onAddTaskClick}>add</button>
 					</div>
 				</div>
