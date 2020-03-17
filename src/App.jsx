@@ -151,16 +151,16 @@ class App extends React.Component {
 								  this.state.filterValue === "Completed" && t.isDone === true ||
 								  this.state.filterValue === "All"
 						  })}/>
-					<div className='todo_wrap'>
-						<TodoListHeader addTask={this.addTask}/>
-						<TodoListTasks changeTitle={this.changeTitle} changeStatus={this.changeStatus}
-									   tasks={this.state.tasks.filter (t => {
-										   return this.state.filterValue === "Active" && t.isDone === false ||
-											   this.state.filterValue === "Completed" && t.isDone === true ||
-											   this.state.filterValue === "All"
-									   })}/>
-						<TodoListFooter changeFilter={this.changeFilter} filterValue={this.state.filterValue}/>
-					</div>
+					{/*<div className='todo_wrap'>*/}
+					{/*	<TodoListHeader addTask={this.addTask}/>*/}
+					{/*	<TodoListTasks changeTitle={this.changeTitle} changeStatus={this.changeStatus}*/}
+					{/*				   tasks={this.state.tasks.filter (t => {*/}
+					{/*					   return this.state.filterValue === "Active" && t.isDone === false ||*/}
+					{/*						   this.state.filterValue === "Completed" && t.isDone === true ||*/}
+					{/*						   this.state.filterValue === "All"*/}
+					{/*				   })}/>*/}
+					{/*	<TodoListFooter changeFilter={this.changeFilter} filterValue={this.state.filterValue}/>*/}
+					{/*</div>*/}
 				</div>
 			</div>
 		);
