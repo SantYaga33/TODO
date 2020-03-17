@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Todo_Header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeaderButtons from "./Header_Buttons/Header_Buttons";
+import Root from "../Root";
 
 
 class Header extends React.Component {
@@ -27,7 +28,7 @@ class Header extends React.Component {
 	render () {
 		return (
 			<div className={styles.header}>
-				<div className={styles.header_title}>New Tasks</div>
+				<div className={styles.header_title}>{this.props.title}</div>
 				<div className={styles.header_logo}>
 					<div className={styles.header_logo__icon}>
 						<FontAwesomeIcon icon={[ 'fab', 'sith' ]} spin size='lg'/>

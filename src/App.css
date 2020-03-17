@@ -1,75 +1,114 @@
+.wrap {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    padding: 50px;
+
+
+
+}
+.wrap_items {
+    display: flex;
+    flex-wrap: wrap;
+
+}
 
 .todoList {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    margin-top: 50px;
+    width: 300px;
+
+
 }
 
-.todo_wrap {
+/*===== стили для  шапки*/
+
+.tasks_wrap__input {
+    height: 68px;
+    width: 500px;
     display: flex;
     align-items: center;
-    flex-direction: column;
-    border: 1px solid;
-    width: 300px;
-}
+    justify-content: center;
+    position: sticky;
+    top: 0;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    z-index: 100;
+    background-color: #424242;
 
-.todoList > div {
-    padding: 10px;
 }
-
-.filter-active {
-    background-color: #2a89f3;
-}
-
-.error {
-    border-color: red;
-}
-
-.done {
-    opacity: .5;
-}
-/*-----scrollbar*/
-::-webkit-scrollbar-button {
-    /*background-image:url('');*/
-    background-repeat:no-repeat;
-    width:6px;
-    height:0px;
+.tasks_input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    padding: 14px;
 
 }
 
-::-webkit-scrollbar-track {
-    background-color:#32312e;
-    box-shadow:0px 0px 3px #000 inset;
-
+.tasks_input input {
+    width: 80%;
+    padding: 0;
+    margin: 0;
+    padding-left: 20px;
+    height: inherit;
+    background-color: #393939;
+    color: #ccc;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+}
+.tasks_input  .inputError  {
+    border: 1px solid red;
 }
 
-::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    background-color:#a9a9a9;
-    box-shadow:0px 1px 1px #fff inset;
-    background-image:url('https://yraaa.ru/_pu/24/59610063.png');
-    background-position:center;
-    background-repeat:no-repeat;
-
+.tasks_input button {
+    width: 20%;
+    height: inherit;
+    background-color: #088dcd;
+    cursor: pointer;
 }
 
-::-webkit-resizer{
-    background-repeat:no-repeat;
-    width:7px;
-    height:0px;
-
+/*===== анимация для кнопки добавдления task*/
+@-webkit-keyframes hvr-push {
+    50% {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
 }
 
-::-webkit-scrollbar{
-    width: 11px;
+@keyframes hvr-push {
+    50% {
+        -webkit-transform: scale(0.8);
+        transform: scale(0.8);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
 
+.tasks_button {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
-::-webkit-scrollbar-track {
-    border-radius: 6px;
-}
-::-webkit-scrollbar:horizontal{
-    height: 12px;
 
+.tasks_button:active {
+    -webkit-animation-name: hvr-push;
+    animation-name: hvr-push;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: 1;
+    animation-iteration-count: 1;
 }
+
+
+/*=====*/

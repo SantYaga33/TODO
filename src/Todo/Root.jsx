@@ -13,10 +13,10 @@ class Root extends React.Component {
 	render = () => {
 		return (
 			<div className={styles.root_wrap}>
-				<Header state={this.props.state} changeFilter={this.props.changeFilter}/>
+				<Header state={this.props.state} changeFilter={this.props.changeFilter} title={this.props.title}/>
 				<TodoTasks addTask={this.props.addTask} tasks={this.props.tasks} deleteTask={this.props.deleteTask}
 						   changeTitle={this.props.changeTitle} changeStatus={this.props.changeStatus}
-						   state={this.props.state} changePriority={this.props.changePriority}/>
+						   state={this.props.state} changePriority={this.props.changePriority}  title={this.props.title}/>
 			</div>
 		);
 
