@@ -1,6 +1,6 @@
 .tasks_item {
     width: 90%;
-    height: 67px;
+    height: 68px;
     margin: 10px 0;
     display: flex;
     align-items: center;
@@ -24,11 +24,17 @@
     position: relative;
     display: flex;
     justify-content: center;
-    width: 200px;
+    align-items: center;
+    /*width: 200px;*/
     padding: 20px 43px;
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
+
+    height: 100%;
+    box-sizing: border-box;
+    width: 66%;
+    height: 100%;
 }
 
 .tasks_title__wrap .task_title {
@@ -36,11 +42,13 @@
     z-index: 1;
     color: #fff;
     width: 100%;
-    font-size: 20px;
+    font-size: 16px;
     letter-spacing: 8px;
     font-weight: bold;
     overflow: hidden;
     overflow-x: auto;
+    border: 1px solid transparent;
+    padding: 8px 0;
 }
 
 .tasks_title__wrap .liquid {
@@ -107,7 +115,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: inherit;
+    height: 100%;
 
 }
 .task_buttons button {
@@ -177,7 +185,8 @@
     width: 8%;
     display: flex;
     align-items: center;
-    height: inherit;
+    height: 100%;
+    justify-content: center;
 }
 
 .task_done input {
@@ -188,7 +197,7 @@
     width: 8%;
     display: flex;
     align-items: center;
-    height: inherit;
+    height: 100%;
 }
 
 .task_delete button {

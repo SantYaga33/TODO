@@ -1,40 +1,18 @@
-.main_page {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-.main_page__wrap {
-    width: 54%;
-    height: 70%;
-    display: flex;
-    justify-content: space-between;
-
-}
-
 .wrap {
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
     flex-direction: column;
-    width: 100%;
-    height: 100vh;
+    width: 38%;
+    height: 617px;
+    border: 1px solid blue;
 
 }
-.wrap_items {
-    display: flex;
-    flex-wrap: wrap;
-    width: 60%;
 
-}
 /*===== стили для  шапки*/
 
 .tasks_wrap__input {
     height: 68px;
-    width: 500px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,6 +96,9 @@
     -webkit-animation-iteration-count: 1;
     animation-iteration-count: 1;
 }
-
-
 /*=====*/
+.list_items {
+    width: 100%;
+    height: 100%;
+    
+}

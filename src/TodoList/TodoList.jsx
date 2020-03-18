@@ -142,7 +142,7 @@ class TodoList extends React.Component {
 
 	render = () => {
 		return (
-			<div className="App">
+			<div>
 				<div className="todoList">
 					<Root state={this.state} addTask={this.addTask} changeFilter={this.changeFilter}
 						  changeTitle={this.changeTitle} changeStatus={this.changeStatus} deleteTask={this.deleteTask}

@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import TodoList from "./TodoList/TodoList";
 import Loader from "./Loader/Loader";
+import SideBar from "./SideBar/SideBar";
 
 
 class App extends React.Component {
@@ -11,7 +12,7 @@ class App extends React.Component {
 
 	state = {
 		todolists: [
-			{ id: 1, titleItem: 'one' },
+			{ id: 1, titleItem: 'My notice' },
 		],
 		error: false,
 		titleItem: '',
@@ -126,27 +127,28 @@ class App extends React.Component {
 		});
 
 	};
-	errorClass = 'inputError';
+	// deleteItem = (ItemId) => {
+	// 	let newTasks = this.state.tasks.filter (t => t.id !== ItemId);
+	// 	this.setState ({
+	// 		tasks: newTasks
+	// 	}, () => {this.saveState (this.state);})
+	// };
 
 	render () {
-		let todoListElements = this.state.todolists.map (td => <TodoList id={td.id} title={td.titleItem}/>)
+		let todoListElements = this.state.todolists.map (td => <TodoList id={td.id} title={td.titleItem}/>);
 
 		return (
-			<div>
+			<div className='main_page'>
 				{this.state.loader ? <Loader/> :
-					<div className='wrap'>
-						<div className='tasks_wrap__input'>
-							<div className='tasks_input'>
-								<input className={this.state.error ? this.errorClass : ''} value={this.state.titleItem}
-									   type="text" placeholder='Enter  name' onKeyPress={this.onAddItemKeyPress}
-									   onChange={this.onTitleItemChange} maxLength="25"/>
-								<button className='tasks_button' onClick={this.onAddItemClick}>add</button>
-							</div>
-						</div>
-						<div className='wrap_items'>
-							{todoListElements}
-						</div>
-					</div>}
+				<div className='main_page__wrap'>
+					<SideBar error={this.state.error} titleItem={this.state.titleItem}
+						  onAddItemKeyPress={this.onAddItemKeyPress} onTitleItemChange={this.onTitleItemChange}
+							  onAddItemClick={this.onAddItemClick}/>
+					<div className='wrap_items'>
+						{todoListElements}
+					</div>
+				</div>
+				}
 			</div>
 		);
 	}
