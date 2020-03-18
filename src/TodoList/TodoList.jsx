@@ -1,12 +1,9 @@
 import React from 'react';
 import './TodoList.css';
 // import { saveState, restoreState } from './localStorage'
-import TodoListHeader from "./TodoListHeader";
-import TodoListTasks from "./TodoListTasks";
-import TodoListFooter from "./TodoListFooter";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import Root from "./Todo/Root";
+import Root from "./../Todo/Root";
 
 
 library.add (fab);
@@ -21,19 +18,19 @@ class TodoList extends React.Component {
 		tasks: [
 			{
 				id: 0,
-				title: 'Example1',
+				title: 'Example',
 				isDone: false,
 				priority: 'high'
 			},
 			{
 				id: 1,
-				title: 'Example2',
+				title: 'Example',
 				isDone: false,
 				priority: 'low'
 			},
 			{
 				id: 2,
-				title: 'Example3',
+				title: 'Example',
 				isDone: true,
 				priority: 'medium'
 			},
@@ -54,7 +51,7 @@ class TodoList extends React.Component {
 
 	saveState = () => {
 		let stateAsString = JSON.stringify (this.state);
-		localStorage.setItem ('our-state-'+ this.props.id, stateAsString);
+		localStorage.setItem ('our-state-' + this.props.id, stateAsString);
 	};
 
 	restoreState = () => {
@@ -155,21 +152,10 @@ class TodoList extends React.Component {
 								  this.state.filterValue === "Completed" && t.isDone === true ||
 								  this.state.filterValue === "All"
 						  })}/>
-					{/*<div className='todo_wrap'>*/}
-					{/*	<TodoListHeader addTask={this.addTask}/>*/}
-					{/*	<TodoListTasks changeTitle={this.changeTitle} changeStatus={this.changeStatus}*/}
-					{/*				   tasks={this.state.tasks.filter (t => {*/}
-					{/*					   return this.state.filterValue === "Active" && t.isDone === false ||*/}
-					{/*						   this.state.filterValue === "Completed" && t.isDone === true ||*/}
-					{/*						   this.state.filterValue === "All"*/}
-					{/*				   })}/>*/}
-					{/*	<TodoListFooter changeFilter={this.changeFilter} filterValue={this.state.filterValue}/>*/}
-					{/*</div>*/}
 				</div>
 			</div>
 		);
 	};
-
 }
 
 export default TodoList;

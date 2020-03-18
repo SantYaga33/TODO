@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './Todo_Header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import HeaderButtons from "./Header_Buttons/Header_Buttons";
-import Root from "../Root";
 
 
 class Header extends React.Component {

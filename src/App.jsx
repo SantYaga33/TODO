@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import TodoList from "./TodoList";
-import styles from "./Todo/Todo_Tasks/Todo_Tasks.module.css";
+import TodoList from "./TodoList/TodoList";
+import Loader from "./Loader/Loader";
 
 
 class App extends React.Component {
@@ -16,10 +16,17 @@ class App extends React.Component {
 		error: false,
 		titleItem: '',
 		nextTaskId: 2,
+		loader: true
 	};
 
 	componentDidMount () {
 		this.restoreState ();
+		setTimeout (() => {
+			this.setState ({
+				loader: false
+			});
+
+		}, 3000)
 	};
 
 	saveState = () => {
@@ -125,21 +132,24 @@ class App extends React.Component {
 		let todoListElements = this.state.todolists.map (td => <TodoList id={td.id} title={td.titleItem}/>)
 
 		return (
-			<div className='wrap'>
-				<div className='tasks_wrap__input'>
-					<div className='tasks_input'>
-						<input className={this.state.error ? this.errorClass : ''} value={this.state.titleItem}
-							   type="text" placeholder='Enter  name' onKeyPress={this.onAddItemKeyPress}
-							   onChange={this.onTitleItemChange} maxLength="25"/>
-						<button className='tasks_button' onClick={this.onAddItemClick}>add</button>
-					</div>
-				</div>
-				<div className='wrap_items'>
-					{todoListElements}
-				</div>
+			<div>
+				{this.state.loader ? <Loader/> :
+					<div className='wrap'>
+						<div className='tasks_wrap__input'>
+							<div className='tasks_input'>
+								<input className={this.state.error ? this.errorClass : ''} value={this.state.titleItem}
+									   type="text" placeholder='Enter  name' onKeyPress={this.onAddItemKeyPress}
+									   onChange={this.onTitleItemChange} maxLength="25"/>
+								<button className='tasks_button' onClick={this.onAddItemClick}>add</button>
+							</div>
+						</div>
+						<div className='wrap_items'>
+							{todoListElements}
+						</div>
+					</div>}
 			</div>
 		);
 	}
-};
+}
 
 export default App;
