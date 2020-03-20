@@ -41,6 +41,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 60%;
+    position: relative;
 
 }
 /*===== стили для  шапки*/

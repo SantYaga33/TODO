@@ -3,6 +3,7 @@ import './App.css';
 import TodoList from "./TodoList/TodoList";
 import Loader from "./Loader/Loader";
 import SideBar from "./SideBar/SideBar";
+import WelcomePage from "./WelcomePage/WelcomePage";
 
 
 class App extends React.Component {
@@ -17,7 +18,8 @@ class App extends React.Component {
 		errorTitle: false,
 		titleItem: '',
 		nextTaskId: 1,
-		loader: true
+		loader: true,
+		isTodo: true
 
 	};
 
@@ -83,6 +85,7 @@ class App extends React.Component {
 		}, () => {
 			this.saveState (this.state);
 			this.setState ({
+				isTodo: true,
 				todolists: this.state.todolists.map ((todo, index) => {
 					if ( index === this.state.todolists.length - 1 ) {
 						return { ...todo, display: true, selectItem: true }
@@ -103,13 +106,16 @@ class App extends React.Component {
 		if ( newTitleItem === '' ) {
 			this.setState ({
 				errorTitle: true
-			});
+			}, () => {
+				this.saveState (this.state);});
 		} else {
 			this.setState ({
 				errorTitle: false
-			});
+			}, () => {
+				this.saveState (this.state);});
 			this.addItem (newTitleItem);
 		}
+		console.log (this.state.todolists.length-1);
 	};
 	onAddItemKeyPress = (e) => {
 		if ( e.key === "Enter" ) {
@@ -120,11 +126,13 @@ class App extends React.Component {
 			if ( newTitleItem === '' ) {
 				this.setState ({
 					errorTitle: true
-				});
+				}, () => {
+					this.saveState (this.state);});
 			} else {
 				this.setState ({
 					errorTitle: false
-				});
+				}, () => {
+					this.saveState (this.state);});
 				this.addItem (newTitleItem);
 			}
 		}
@@ -134,7 +142,8 @@ class App extends React.Component {
 		this.setState ({
 			errorTitle: false,
 			titleItem: e.currentTarget.value
-		});
+		}, () => {
+			this.saveState (this.state);});
 
 	};
 	choiceItem = (itemId) => {
@@ -146,12 +155,14 @@ class App extends React.Component {
 					return { ...todo, display: false, selectItem: false }
 				}
 			})
-		});
+		}, () => {
+			this.saveState (this.state);});
 	};
 
 	deleteItem = (itemId) => {
-		if( this.state.todolists.length > 1 ) {
+		if (this.state.todolists.length-1 !== 0 ) {
 			this.setState ({
+				isTodo: true,
 				todolists: this.state.todolists.filter (todo => todo.id !== itemId)
 			}, () => {
 				this.setState ({
@@ -162,12 +173,18 @@ class App extends React.Component {
 							return { ...todo, display: false, selectItem: false }
 						}
 					})
-
 				});
+				this.saveState (this.state);
 			});
 		} else {
-			return false;
+			this.setState ({
+				todolists: this.state.todolists.filter (todo => todo.id !== itemId),
+				isTodo: false
+			}, () => {
+				this.saveState (this.state);});
+
 		}
+		console.log (this.state.todolists.length-1);
 	};
 
 
@@ -179,13 +196,18 @@ class App extends React.Component {
 			<div className='main_page'>
 				{this.state.loader ? <Loader/> :
 					<div className='main_page__wrap'>
-						<SideBar errorTitle={this.state.errorTitle} todolists={this.state.todolists} choiceItem={this.choiceItem}
+						<SideBar errorTitle={this.state.errorTitle} todolists={this.state.todolists}
+								 choiceItem={this.choiceItem}
 								 deleteItem={this.deleteItem} onAddItemKeyPress={this.onAddItemKeyPress}
 								 onTitleItemChange={this.onTitleItemChange} titleItem={this.state.titleItem}
 								 onAddItemClick={this.onAddItemClick}/>
 						<div className='join'></div>
+
 						<div className='wrap_items'>
-							{todoListElements}
+							{ this.state.isTodo ?
+								<div>{ todoListElements }</div>
+								: <WelcomePage/>
+							}
 						</div>
 					</div>
 				}
