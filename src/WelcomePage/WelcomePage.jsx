@@ -14,7 +14,7 @@ class WelcomePage extends React.Component {
 			<div className={styles.welcome_main}>
 				<div className={styles.welcome_wrap}>
 					<h1 className={styles.welcome_title}> WELCOME !!!</h1>
-					<h4 className={styles.welcome_text}> let`s name your first TODO  </h4>
+					<h4 className={styles.welcome_text}> Let`s name your first TODO  </h4>
 					<span>enjoy :)</span>
 				</div>
 			</div>

@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './CreateItemTitle.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { NavLink } from "react-router-dom";
 
 
 class CreateItemTitle extends React.Component {

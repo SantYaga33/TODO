@@ -115,7 +115,6 @@ class App extends React.Component {
 				this.saveState (this.state);});
 			this.addItem (newTitleItem);
 		}
-		console.log (this.state.todolists.length-1);
 	};
 	onAddItemKeyPress = (e) => {
 		if ( e.key === "Enter" ) {
@@ -182,9 +181,7 @@ class App extends React.Component {
 				isTodo: false
 			}, () => {
 				this.saveState (this.state);});
-
 		}
-		console.log (this.state.todolists.length-1);
 	};
 
 
