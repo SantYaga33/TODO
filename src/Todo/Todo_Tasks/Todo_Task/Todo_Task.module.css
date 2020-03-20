@@ -26,7 +26,7 @@
     justify-content: center;
     align-items: center;
     /*width: 200px;*/
-    padding: 20px 43px;
+    padding: 20px;
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
@@ -43,12 +43,13 @@
     color: #fff;
     width: 100%;
     font-size: 16px;
-    letter-spacing: 8px;
+    /*letter-spacing: 1px;*/
     font-weight: bold;
     overflow: hidden;
     overflow-x: auto;
     border: 1px solid transparent;
     padding: 8px 0;
+    padding-left: 27px;
 }
 
 .tasks_title__wrap .liquid {
@@ -59,7 +60,6 @@
     background: #33cc33;
     top: -80px;
     left: 0;
-    /*box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);*/
     transition: 0.3s;
 }
 
@@ -81,7 +81,6 @@
     top: -72px;
     height: 356%;
     width: 268%;
-
     left: 50%;
     transform: translate(-50%, -75%);
 }
@@ -89,16 +88,16 @@
 .tasks_title__wrap .liquid:before {
     border-radius: 45%;
     background-color: rgba(66, 66, 66, 1);
-    animation: float 8s linear infinite;
+    animation: wave 8s linear infinite;
 }
 
 .tasks_title__wrap .liquid:after {
     border-radius: 40%;
     background: rgba(66, 66, 66, .5);
-    animation: float 8s linear infinite;
+    animation: wave 8s linear infinite;
 }
 
-@keyframes float {
+@keyframes wave {
     0% {
         transform: translate(-50%, -75%) rotate(0deg);
     }
@@ -126,7 +125,6 @@
     height: 31%;
     /*background-color:  #ffcc00;*/
     cursor: pointer;
-
     border-left: 1px solid #363636;
 
 }
@@ -141,7 +139,7 @@
 }
 
 /*==== анимация кнопок в task */
-@-webkit-keyframes hvr-push {
+@-webkit-keyframes push {
     50% {
         -webkit-transform: scale(0.8);
         transform: scale(0.8);
@@ -151,7 +149,7 @@
         transform: scale(1);
     }
 }
-@keyframes hvr-push {
+@keyframes push {
     50% {
         -webkit-transform: scale(0.8);
         transform: scale(0.8);
@@ -169,14 +167,14 @@
     box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 }
 .task_buttons button:active {
-    -webkit-animation-name: hvr-push;
-    animation-name: hvr-push;
-    -webkit-animation-duration: 0.3s;
-    animation-duration: 0.3s;
+    -webkit-animation-name: push;
     -webkit-animation-timing-function: linear;
     animation-timing-function: linear;
     -webkit-animation-iteration-count: 1;
     animation-iteration-count: 1;
+    animation-name: push;
+    -webkit-animation-duration: 0.3s;
+    animation-duration: 0.3s;
 }
 
 /*=======*/
