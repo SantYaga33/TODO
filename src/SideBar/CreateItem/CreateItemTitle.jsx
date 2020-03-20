@@ -1,5 +1,8 @@
 import React from 'react';
 import styles from './CreateItemTitle.module.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { NavLink } from "react-router-dom";
 
 
 class CreateItemTitle extends React.Component {
@@ -7,45 +10,26 @@ class CreateItemTitle extends React.Component {
 		super (props);
 	}
 
-	state = {
-		editMode: false
+	onChoiceItem = () => {
+		this.props.choiceItem (this.props.id);
+
 	};
 
-
-	activeEditorMode = () => {
-		this.setState ({
-			editMode: true
-		});
-	};
-	deactivateEditMode = () => {
-		this.setState ({
-			editMode: false
-		});
-	};
-	onTitleChange = (e) => {
-		this.props.changeTitle (this.props.item.id, e.currentTarget.value)
-	};
 	onDeleteItem = () => {
-		this.props.deleteTask (this.props.item.id)
+		this.props.deleteItem (this.props.id);
 	};
+
 	render () {
 
 		return (
-			<div className={styles.wrap_title__item}>
-				<div className={styles.tasks_wrap__title}>
-					{this.state.editMode
-						? <input className={styles.input_onblur} onBlur={this.deactivateEditMode}
-								 onChange={this.onTitleChange} type='text'  maxLength="25"
-								 value={this.props.item.title} autoFocus={true}/>
-						:
-						<div className={styles.item_title} onClick={this.activeEditorMode}
-							 maxLength="25"	>{this.props.item.title}</div>
-					}
+			<li className={this.props.selectItem ? ` ${styles.item} ${ styles.select}`: styles.item}>
+				<div className={styles.item_title} onClick={this.onChoiceItem}>{this.props.title}</div>
+				<div className={styles.item_button} onClick={this.onDeleteItem}>
+					<button>
+						<FontAwesomeIcon className={styles.item_icon} icon={faTrashAlt} size='lg'/>
+					</button>
 				</div>
-				<div className={styles.wrap_button}>
-					<button onClick={this.onDeleteItem}>del</button>
-				</div>
-			</div>
+			</li>
 		);
 	}
 }

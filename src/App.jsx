@@ -12,12 +12,13 @@ class App extends React.Component {
 
 	state = {
 		todolists: [
-			{ id: 1, titleItem: 'My notice' },
+			{ id: 0, titleItem: 'My notice', display: true, selectItem: false },
 		],
-		error: false,
+		errorTitle: false,
 		titleItem: '',
-		nextTaskId: 2,
+		nextTaskId: 1,
 		loader: true
+
 	};
 
 	componentDidMount () {
@@ -67,21 +68,32 @@ class App extends React.Component {
 		this.setState (state);
 	};
 
-
 	addItem = (title) => {
 		let newItem = {
 			id: this.state.nextTaskId,
 			titleItem: title,
+			display: false,
+			selectItem: false
 		};
 
 		let newTodolists = [ ...this.state.todolists, newItem ];
 		this.setState ({
 			todolists: newTodolists,
 			nextTaskId: this.state.nextTaskId + 1,
-		}, () => {this.saveState (this.state);});
+		}, () => {
+			this.saveState (this.state);
+			this.setState ({
+				todolists: this.state.todolists.map ((todo, index) => {
+					if ( index === this.state.todolists.length - 1 ) {
+						return { ...todo, display: true, selectItem: true }
+					} else {
+						return { ...todo, display: false, selectItem: false }
+					}
+				})
 
+			});
+		});
 	};
-
 
 	onAddItemClick = () => {
 		let newTitleItem = this.state.titleItem;
@@ -90,15 +102,14 @@ class App extends React.Component {
 		});
 		if ( newTitleItem === '' ) {
 			this.setState ({
-				error: true
+				errorTitle: true
 			});
 		} else {
 			this.setState ({
-				error: false
+				errorTitle: false
 			});
 			this.addItem (newTitleItem);
 		}
-
 	};
 	onAddItemKeyPress = (e) => {
 		if ( e.key === "Enter" ) {
@@ -108,46 +119,75 @@ class App extends React.Component {
 			});
 			if ( newTitleItem === '' ) {
 				this.setState ({
-					error: true
+					errorTitle: true
 				});
 			} else {
 				this.setState ({
-					error: false
+					errorTitle: false
 				});
 				this.addItem (newTitleItem);
 			}
-
 		}
 	};
 
 	onTitleItemChange = (e) => {
 		this.setState ({
-			error: false,
+			errorTitle: false,
 			titleItem: e.currentTarget.value
 		});
 
 	};
-	// deleteItem = (ItemId) => {
-	// 	let newTasks = this.state.tasks.filter (t => t.id !== ItemId);
-	// 	this.setState ({
-	// 		tasks: newTasks
-	// 	}, () => {this.saveState (this.state);})
-	// };
+	choiceItem = (itemId) => {
+		this.setState ({
+			todolists: this.state.todolists.map (todo => {
+				if ( todo.id === itemId ) {
+					return { ...todo, display: true, selectItem: true }
+				} else {
+					return { ...todo, display: false, selectItem: false }
+				}
+			})
+		});
+	};
+
+	deleteItem = (itemId) => {
+		if( this.state.todolists.length > 1 ) {
+			this.setState ({
+				todolists: this.state.todolists.filter (todo => todo.id !== itemId)
+			}, () => {
+				this.setState ({
+					todolists: this.state.todolists.map ((todo, index) => {
+						if ( index === this.state.todolists.length - 1 ) {
+							return { ...todo, display: true, selectItem: true }
+						} else {
+							return { ...todo, display: false, selectItem: false }
+						}
+					})
+
+				});
+			});
+		} else {
+			return false;
+		}
+	};
+
 
 	render () {
-		let todoListElements = this.state.todolists.map (td => <TodoList id={td.id} title={td.titleItem}/>);
+		let todoListElements = this.state.todolists.map (td =>
+			<TodoList id={td.id} title={td.titleItem} display={td.display ? 'display_block' : 'display_none'}/>);
 
 		return (
 			<div className='main_page'>
 				{this.state.loader ? <Loader/> :
-				<div className='main_page__wrap'>
-					<SideBar error={this.state.error} titleItem={this.state.titleItem}
-						  onAddItemKeyPress={this.onAddItemKeyPress} onTitleItemChange={this.onTitleItemChange}
-							  onAddItemClick={this.onAddItemClick}/>
-					<div className='wrap_items'>
-						{todoListElements}
+					<div className='main_page__wrap'>
+						<SideBar errorTitle={this.state.errorTitle} todolists={this.state.todolists} choiceItem={this.choiceItem}
+								 deleteItem={this.deleteItem} onAddItemKeyPress={this.onAddItemKeyPress}
+								 onTitleItemChange={this.onTitleItemChange} titleItem={this.state.titleItem}
+								 onAddItemClick={this.onAddItemClick}/>
+						<div className='join'></div>
+						<div className='wrap_items'>
+							{todoListElements}
+						</div>
 					</div>
-				</div>
 				}
 			</div>
 		);

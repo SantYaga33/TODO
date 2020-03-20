@@ -7,7 +7,7 @@ export const restoreState = (currentState) => {
 	let state;
 	let stateAsString = localStorage.getItem ('our-state' );
 	if ( stateAsString !== null ) {
-		 state = JSON.parse (stateAsString);
+		state = JSON.parse (stateAsString);
 		return state;
 	} else {
 

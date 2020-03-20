@@ -4,9 +4,9 @@ import './TodoList.css';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import Root from "./../Todo/Root";
+import {faTrashAlt} from '@fortawesome/free-solid-svg-icons'
 
-
-library.add (fab);
+library.add (fab,faTrashAlt);
 
 class TodoList extends React.Component {
 	constructor (props) {
@@ -144,9 +144,9 @@ class TodoList extends React.Component {
 		return (
 			<div>
 				<div className="todoList">
-					<Root state={this.state} addTask={this.addTask} changeFilter={this.changeFilter}
+					<Root state={this.state} addTask={this.addTask} changeFilter={this.changeFilter} id={this.props.id}
 						  changeTitle={this.changeTitle} changeStatus={this.changeStatus} deleteTask={this.deleteTask}
-						  changePriority={this.changePriority} title={this.props.title}
+						  changePriority={this.changePriority} title={this.props.title} display={this.props.display}
 						  tasks={this.state.tasks.filter (t => {
 							  return this.state.filterValue === "Active" && t.isDone === false ||
 								  this.state.filterValue === "Completed" && t.isDone === true ||
