@@ -12,8 +12,9 @@ class App extends React.Component {
 	}
 
 	state = {
+
 		todolists: [
-			{ id: 0, titleItem: 'My notice', display: true, selectItem: false },
+			{ id: 0, titleItem: 'My notice', display: true, selectItem: true },
 		],
 		errorTitle: false,
 		titleItem: '',
@@ -29,7 +30,6 @@ class App extends React.Component {
 			this.setState ({
 				loader: false
 			});
-
 		}, 3000)
 	};
 
@@ -83,7 +83,6 @@ class App extends React.Component {
 			todolists: newTodolists,
 			nextTaskId: this.state.nextTaskId + 1,
 		}, () => {
-			this.saveState (this.state);
 			this.setState ({
 				isTodo: true,
 				todolists: this.state.todolists.map ((todo, index) => {
@@ -95,6 +94,7 @@ class App extends React.Component {
 				})
 
 			});
+			this.saveState (this.state);
 		});
 	};
 
@@ -107,12 +107,14 @@ class App extends React.Component {
 			this.setState ({
 				errorTitle: true
 			}, () => {
-				this.saveState (this.state);});
+				this.saveState (this.state);
+			});
 		} else {
 			this.setState ({
 				errorTitle: false
 			}, () => {
-				this.saveState (this.state);});
+				this.saveState (this.state);
+			});
 			this.addItem (newTitleItem);
 		}
 	};
@@ -126,12 +128,14 @@ class App extends React.Component {
 				this.setState ({
 					errorTitle: true
 				}, () => {
-					this.saveState (this.state);});
+					this.saveState (this.state);
+				});
 			} else {
 				this.setState ({
 					errorTitle: false
 				}, () => {
-					this.saveState (this.state);});
+					this.saveState (this.state);
+				});
 				this.addItem (newTitleItem);
 			}
 		}
@@ -142,7 +146,8 @@ class App extends React.Component {
 			errorTitle: false,
 			titleItem: e.currentTarget.value
 		}, () => {
-			this.saveState (this.state);});
+			this.saveState (this.state);
+		});
 
 	};
 	choiceItem = (itemId) => {
@@ -155,11 +160,12 @@ class App extends React.Component {
 				}
 			})
 		}, () => {
-			this.saveState (this.state);});
+			this.saveState (this.state);
+		});
 	};
 
 	deleteItem = (itemId) => {
-		if (this.state.todolists.length-1 !== 0 ) {
+		if ( this.state.todolists.length - 1 !== 0 ) {
 			this.setState ({
 				isTodo: true,
 				todolists: this.state.todolists.filter (todo => todo.id !== itemId)
@@ -180,7 +186,8 @@ class App extends React.Component {
 				todolists: this.state.todolists.filter (todo => todo.id !== itemId),
 				isTodo: false
 			}, () => {
-				this.saveState (this.state);});
+				this.saveState (this.state);
+			});
 		}
 	};
 
@@ -199,10 +206,9 @@ class App extends React.Component {
 								 onTitleItemChange={this.onTitleItemChange} titleItem={this.state.titleItem}
 								 onAddItemClick={this.onAddItemClick}/>
 						<div className='join'></div>
-
 						<div className='wrap_items'>
-							{ this.state.isTodo ?
-								<div>{ todoListElements }</div>
+							{this.state.isTodo ?
+								<div>{todoListElements}</div>
 								: <WelcomePage/>
 							}
 						</div>
