@@ -93,8 +93,7 @@ class App extends React.Component {
 					}
 				})
 
-			});
-			this.saveState (this.state);
+			},() => this.saveState (this.state));
 		});
 	};
 
@@ -178,8 +177,7 @@ class App extends React.Component {
 							return { ...todo, display: false, selectItem: false }
 						}
 					})
-				});
-				this.saveState (this.state);
+				},()   => this.saveState (this.state));
 			});
 		} else {
 			this.setState ({
