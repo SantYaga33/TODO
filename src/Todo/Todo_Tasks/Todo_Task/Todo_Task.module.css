@@ -291,13 +291,13 @@
     justify-content: center;
     z-index: 300;
     opacity: .40;
-    width: 86%;
+    width: 82%;
     padding: 3px;
     background: #393939;
     color: #088dcd;
     position: absolute;
     top: -120%;
-    left: -1%;
+    left: 10%;
     font-size: 10px;
     box-sizing: border-box;
     transform: translateY(9px);
