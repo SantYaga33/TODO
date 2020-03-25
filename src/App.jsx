@@ -12,7 +12,6 @@ class App extends React.Component {
 	}
 
 	state = {
-
 		todolists: [
 			{ id: 0, titleItem: 'My notice', display: true, selectItem: true },
 		],
@@ -21,7 +20,6 @@ class App extends React.Component {
 		nextTaskId: 1,
 		loader: true,
 		isTodo: true
-
 	};
 
 	componentDidMount () {
@@ -192,7 +190,7 @@ class App extends React.Component {
 
 	render () {
 		let todoListElements = this.state.todolists.map (td =>
-			<TodoList id={td.id} title={td.titleItem} display={td.display ? 'display_block' : 'display_none'}/>);
+			<TodoList key={td.id} id={td.id} title={td.titleItem} display={td.display ? 'display_block' : 'display_none'}/>);
 
 		return (
 			<div className='main_page'>
