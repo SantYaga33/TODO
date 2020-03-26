@@ -97,18 +97,12 @@ class TodoList extends React.Component {
 
 	addTask = (title) => {
 		let newCreateDate = new Date ();
-		let createDateStr = newCreateDate+'';
-
-		// let lastIndex = createDateStr.lastIndexOf(' ');
-		//
-		// createDateStr = createDateStr.substring(0, lastIndex);
-		console.log (createDateStr);
 		let newTask = {
 			id: this.state.nextTaskId,
 			title: title,
 			isDone: false,
 			priority: 'low',
-			date: { createDate: createDateStr, updateDate: '', finishedDate: '' }
+			date: { createDate: newCreateDate +'', updateDate: '', finishedDate: '' }
 		};
 
 		let newTasks = [ ...this.state.tasks, newTask ];
