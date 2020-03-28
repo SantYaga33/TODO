@@ -1,10 +1,10 @@
 import React from 'react';
 import './TodoList.css';
-// import { saveState, restoreState } from './localStorage'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import Root from "./../Todo/Root";
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { repository } from "../Repository";
 
 library.add (fab, faTrashAlt);
 
@@ -51,48 +51,15 @@ class TodoList extends React.Component {
 		this.restoreState ();
 	};
 
-	// componentDidMount () {
-	// 	let state = restoreState (this.state);
-	// 	this.setState (state);
-	//
-	// };
-
 	saveState = () => {
-		let stateAsString = JSON.stringify (this.state);
-		localStorage.setItem ('our-state-' + this.props.id, stateAsString);
+		repository.saveTasks(this.state, this.props.id);
 	};
 
 	restoreState = () => {
-		// let state = {
-		// 	tasks: [
-		// 		{
-		// 			id: 0,
-		// 			title: 'Example',
-		// 			isDone: false,
-		// 			priority: 'high'
-		// 		},
-		// 		{
-		// 			id: 1,
-		// 			title: 'Example',
-		// 			isDone: false,
-		// 			priority: 'low'
-		// 		},
-		// 		{
-		// 			id: 2,
-		// 			title: 'Example',
-		// 			isDone: true,
-		// 			priority: 'medium'
-		// 		},
-		// 	],
-		// 	filterValue: 'All',
-		// 	nextTaskId: 3,
-		// };
-		let stateAsString = localStorage.getItem ('our-state-' + this.props.id);
-		if ( stateAsString !== null ) {
-			let stateLocalStorage = JSON.parse (stateAsString);
-			this.setState (stateLocalStorage);
+		let tasks = repository.getTasks(this.props.id);
+		if ( tasks !== null) {
+			this.setState (tasks);
 		}
-
 	};
 
 	addTask = (title) => {

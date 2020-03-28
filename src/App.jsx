@@ -4,6 +4,7 @@ import TodoList from "./TodoList/TodoList";
 import Loader from "./Loader/Loader";
 import SideBar from "./SideBar/SideBar";
 import WelcomePage from "./WelcomePage/WelcomePage";
+import { repository } from "./Repository";
 
 
 class App extends React.Component {
@@ -32,40 +33,14 @@ class App extends React.Component {
 	};
 
 	saveState = () => {
-		let stateAsString = JSON.stringify (this.state);
-		localStorage.setItem ('Todo-list', stateAsString);
+		repository.saveTodoList(this.state);
 	};
 
 	restoreState = () => {
-		let state = {
-			tasks: [
-				{
-					id: 0,
-					title: 'Example',
-					isDone: false,
-					priority: 'high'
-				},
-				{
-					id: 1,
-					title: 'Example',
-					isDone: false,
-					priority: 'low'
-				},
-				{
-					id: 2,
-					title: 'Example',
-					isDone: true,
-					priority: 'medium'
-				},
-			],
-			filterValue: 'All',
-			nextTaskId: 3,
-		};
-		let stateAsString = localStorage.getItem ('Todo-list');
-		if ( stateAsString !== null ) {
-			state = JSON.parse (stateAsString);
+		let todolists = repository.getTodoList();
+		if ( todolists !== null) {
+			this.setState (todolists);
 		}
-		this.setState (state);
 	};
 
 	addItem = (title) => {
