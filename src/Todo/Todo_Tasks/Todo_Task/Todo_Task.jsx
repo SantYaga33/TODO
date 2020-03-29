@@ -5,10 +5,6 @@ import classNames from "classnames";
 
 class TodoTask extends React.Component {
 
-	constructor (props) {
-		super (props);
-	}
-
 	state = {
 		editMode: false
 	};
@@ -46,16 +42,16 @@ class TodoTask extends React.Component {
 	render = () => {
 		return (
 			<div className={styles.tasks_item} id={this.props.id} data-priority={this.props.priority}>
-				<div className={styles.tooltip}>
-					<div className={styles.tooltip_wrap}>
-						<h4 className={styles.tooltip_title}>Task title : {this.props.task.title}</h4>
-						<div className={styles.tooltip_wrap__discr}>
-							<div className={styles.tooltip_info}>created : {this.props.createDate} </div>
-							<div className={styles.tooltip_info}>updated :{this.props.updateDate} </div>
-							<div className={styles.tooltip_info}>finished : {this.props.finishedDate} </div>
-						</div>
-					</div>
-				</div>
+				{/*<div className={styles.tooltip}>*/}
+				{/*	<div className={styles.tooltip_wrap}>*/}
+				{/*		<h4 className={styles.tooltip_title}>Task title : {this.props.task.title}</h4>*/}
+				{/*		<div className={styles.tooltip_wrap__discr}>*/}
+				{/*			<div className={styles.tooltip_info}>created : {this.props.createDate} </div>*/}
+				{/*			<div className={styles.tooltip_info}>updated :{this.props.updateDate} </div>*/}
+				{/*			<div className={styles.tooltip_info}>finished : {this.props.finishedDate} </div>*/}
+				{/*		</div>*/}
+				{/*	</div>*/}
+				{/*</div>*/}
 				<div className={styles.tasks_title__wrap}>
 
 					{this.state.editMode
@@ -94,3 +90,12 @@ class TodoTask extends React.Component {
 }
 
 export default TodoTask;
+
+
+
+
+
+
+
+
+

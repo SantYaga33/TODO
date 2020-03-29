@@ -9,9 +9,6 @@ import { repository } from "../Repository";
 library.add (fab, faTrashAlt);
 
 class TodoList extends React.Component {
-	constructor (props) {
-		super (props);
-	}
 
 	state = {
 		tasks: [

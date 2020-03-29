@@ -5,10 +5,6 @@ import TodoTask from "./Todo_Task/Todo_Task";
 
 class TodoTasks extends React.Component {
 
-	constructor (props) {
-		super (props);
-	}
-
 	state = {
 		error: false,
 		title: '',

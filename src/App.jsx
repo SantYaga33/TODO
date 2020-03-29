@@ -5,6 +5,7 @@ import Loader from "./Loader/Loader";
 import SideBar from "./SideBar/SideBar";
 import WelcomePage from "./WelcomePage/WelcomePage";
 import { repository } from "./Repository";
+import { Tooltip } from "@material-ui/core";
 
 
 class App extends React.Component {
@@ -33,12 +34,12 @@ class App extends React.Component {
 	};
 
 	saveState = () => {
-		repository.saveTodoList(this.state);
+		repository.saveTodoList (this.state);
 	};
 
 	restoreState = () => {
-		let todolists = repository.getTodoList();
-		if ( todolists !== null) {
+		let todolists = repository.getTodoList ();
+		if ( todolists !== null ) {
 			this.setState (todolists);
 		}
 	};
@@ -66,7 +67,7 @@ class App extends React.Component {
 					}
 				})
 
-			},() => this.saveState (this.state));
+			}, () => this.saveState (this.state));
 		});
 	};
 
@@ -150,7 +151,7 @@ class App extends React.Component {
 							return { ...todo, display: false, selectItem: false }
 						}
 					})
-				},()   => this.saveState (this.state));
+				}, () => this.saveState (this.state));
 			});
 		} else {
 			this.setState ({
@@ -165,7 +166,8 @@ class App extends React.Component {
 
 	render () {
 		let todoListElements = this.state.todolists.map (td =>
-			<TodoList key={td.id} id={td.id} title={td.titleItem} display={td.display ? 'display_block' : 'display_none'}/>);
+			<TodoList key={td.id} id={td.id} title={td.titleItem}
+					  display={td.display ? 'display_block' : 'display_none'}/>);
 
 		return (
 			<div className='main_page'>
