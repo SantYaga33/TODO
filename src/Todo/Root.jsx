@@ -6,10 +6,6 @@ import TodoTasks from "./Todo_Tasks/Todo_Tasks";
 
 class Root extends React.Component {
 
-	constructor (props) {
-		super (props);
-	}
-
 	render = () => {
 		return (
 			<div className={this.props.display}>
@@ -26,3 +22,4 @@ class Root extends React.Component {
 }
 
 export default Root;
+

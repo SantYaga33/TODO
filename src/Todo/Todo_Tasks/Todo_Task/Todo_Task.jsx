@@ -42,6 +42,8 @@ class TodoTask extends React.Component {
 	render = () => {
 		return (
 			<div className={styles.tasks_item} id={this.props.id} data-priority={this.props.priority}>
+				{/** ===== tooltip ===== * */}
+
 				{/*<div className={styles.tooltip}>*/}
 				{/*	<div className={styles.tooltip_wrap}>*/}
 				{/*		<h4 className={styles.tooltip_title}>Task title : {this.props.task.title}</h4>*/}
@@ -52,6 +54,8 @@ class TodoTask extends React.Component {
 				{/*		</div>*/}
 				{/*	</div>*/}
 				{/*</div>*/}
+
+				{/** ===== tooltip ===== * */}
 				<div className={styles.tasks_title__wrap}>
 
 					{this.state.editMode
