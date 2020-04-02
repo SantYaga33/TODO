@@ -5,6 +5,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 import Root from "./../Todo/Root";
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { repository } from "../Repository";
+import { connect } from "react-redux";
 
 library.add (fab, faTrashAlt);
 
@@ -17,27 +18,33 @@ class TodoList extends React.Component {
 				title: 'Example',
 				isDone: false,
 				priority: 'high',
-				date: {  createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+				date: {
+					createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
 					updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
-					finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)' }
+					finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
+				}
 			},
 			{
 				id: 1,
 				title: 'Example',
 				isDone: false,
 				priority: 'low',
-				date: { createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
-					    updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
-				       finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)' }
+				date: {
+					createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+					updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+					finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
+				}
 			},
 			{
 				id: 2,
 				title: 'Example',
 				isDone: true,
 				priority: 'medium',
-				date: { createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+				date: {
+					createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
 					updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
-					finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)' }
+					finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
+				}
 			},
 		],
 		filterValue: "All",
@@ -49,12 +56,12 @@ class TodoList extends React.Component {
 	};
 
 	saveState = () => {
-		repository.saveTasks(this.state, this.props.id);
+		repository.saveTasks (this.state, this.props.id);
 	};
 
 	restoreState = () => {
-		let tasks = repository.getTasks(this.props.id);
-		if ( tasks !== null) {
+		let tasks = repository.getTasks (this.props.id);
+		if ( tasks !== null ) {
 			this.setState (tasks);
 		}
 	};
@@ -66,7 +73,7 @@ class TodoList extends React.Component {
 			title: title,
 			isDone: false,
 			priority: 'low',
-			date: { createDate: newCreateDate +'', updateDate: '', finishedDate: '' }
+			date: { createDate: newCreateDate + '', updateDate: '', finishedDate: '' }
 		};
 
 		let newTasks = [ ...this.state.tasks, newTask ];
@@ -100,7 +107,7 @@ class TodoList extends React.Component {
 		let newTask = this.state.tasks.find ((task) => {
 			return task.id === taskId
 		})
-		let newTaskDate = { ...newTask.date, finishedDate: newFinishedDate +'' };
+		let newTaskDate = { ...newTask.date, finishedDate: newFinishedDate + '' };
 
 
 		this.changeTask (taskId,
@@ -114,8 +121,8 @@ class TodoList extends React.Component {
 		let newTask = this.state.tasks.find ((task) => {
 			return task.id === taskId
 		});
-		let newTaskDate = { ...newTask.date, updateDate: newUpdateDate +'' };
-		this.changeTask (taskId, { title: title, date: newTaskDate  });
+		let newTaskDate = { ...newTask.date, updateDate: newUpdateDate + '' };
+		this.changeTask (taskId, { title: title, date: newTaskDate });
 	};
 	changePriority = (taskId, priority) => {
 		this.changeTask (taskId, { priority: priority });
@@ -147,4 +154,12 @@ class TodoList extends React.Component {
 	};
 }
 
-export default TodoList;
+const mapStateToProps = (state) => {
+	return {}
+};
+const mapDispatchToProps = (dispatch) => {
+    return {}
+};
+
+const ConnectedTodoList = connect (mapStateToProps, mapDispatchToProps) (TodoList);
+export default ConnectedTodoList;

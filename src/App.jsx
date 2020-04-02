@@ -10,17 +10,6 @@ import { connect } from "react-redux";
 
 class App extends React.Component {
 
-	state = {
-		todolists: [
-			{ id: 0, titleItem: 'My notice', display: true, selectItem: true },
-		],
-		errorTitle: false,
-		titleItem: '',
-		nextTaskId: 1,
-		loader: true,
-		isTodo: true
-	};
-
 	componentDidMount () {
 		setTimeout (() => {
 		this.props.setLoading(false);
@@ -43,138 +32,43 @@ class App extends React.Component {
 
 	addItem = (title) => {
 		let todolist = {
-			id: this.props.nextTaskId,
+			id: this.props.nextTodolistId,
 			titleItem: title,
 			display: false,
 			selectItem: false
 		};
+		this.props.addTodolist(todolist,this.props.nextTodolistId);
 
-		this.props.addTodolist(todolist,this.props.nextTaskId);
-		// let newTodolists = [ ...this.state.todolists, newItem ];
-		// this.setState ({
-		// 	todolists: newTodolists,
-		// 	nextTaskId: this.state.nextTaskId + 1,
-		// }, () => {
-		// 	this.setState ({
-		// 		isTodo: true,
-		// 		todolists: this.state.todolists.map ((todo, index) => {
-		// 			if ( index === this.state.todolists.length - 1 ) {
-		// 				return { ...todo, display: true, selectItem: true }
-		// 			} else {
-		// 				return { ...todo, display: false, selectItem: false }
-		// 			}
-		// 		})
-		//
-		// 	}, () => this.saveState (this.state));
-		// });
 	};
 
 	onAddItemClick = () => {
 		let newTitleItem = this.props.titleItem;
 		this.props.addTodolistClick(newTitleItem);
-		this.addItem (newTitleItem);
-		// this.setState ({
-		// 	titleItem: ''
-		// });
-		// if ( newTitleItem === '' ) {
-		// 	this.setState ({
-		// 		errorTitle: true
-		// 	}, () => {
-		// 		this.saveState (this.state);
-		// 	});
-		// } else {
-		// 	this.setState ({
-		// 		errorTitle: false
-		// 	}, () => {
-		// 		this.saveState (this.state);
-		// 	});
-		// 	this.addItem (newTitleItem);
-		// }
-
-	};
-	onAddItemKeyPress = (e) => {
-		if ( e.key === "Enter" ) {
-			let newTitleItem = this.props.titleItem;
-			this.props.addTodolistClick(newTitleItem);
+		if (newTitleItem) {
 			this.addItem (newTitleItem);
 		}
-
-		// if ( e.key === "Enter" ) {
-		// 	let newTitleItem = this.state.titleItem;
-		// 	this.setState ({
-		// 		titleItem: ''
-		// 	});
-		// 	if ( newTitleItem === '' ) {
-		// 		this.setState ({
-		// 			errorTitle: true
-		// 		}, () => {
-		// 			this.saveState (this.state);
-		// 		});
-		// 	} else {
-		// 		this.setState ({
-		// 			errorTitle: false
-		// 		}, () => {
-		// 			this.saveState (this.state);
-		// 		});
-		// 		this.addItem (newTitleItem);
-		// 	}
-		// }
+	};
+	onAddItemKeyPress = (e) => {
+		let newTitleItem = this.props.titleItem;
+		if ( e.key === "Enter" ) {
+			this.props.addTodolistClick(newTitleItem);
+			if(newTitleItem) {
+				this.addItem (newTitleItem);
+			}
+		}
 	};
 
 	onTitleItemChange = (e) => {
 		let titleItem = e.currentTarget.value
 		this.props.setTodolistTitle(titleItem);
-
-		// this.setState ({
-		// 	errorTitle: false,
-		// 	titleItem: e.currentTarget.value
-		// }, () => {
-		// 	this.saveState (this.state);
-		// });
-
 	};
-	choiceItem = (itemId) => {
 
+	choiceItem = (itemId) => {
 		this.props.choiceTodoList(itemId);
-		// this.setState ({
-		// 	todolists: this.state.todolists.map (todo => {
-		// 		if ( todo.id === itemId ) {
-		// 			return { ...todo, display: true, selectItem: true }
-		// 		} else {
-		// 			return { ...todo, display: false, selectItem: false }
-		// 		}
-		// 	})
-		// }, () => {
-		// 	this.saveState (this.state);
-		// });
 	};
 
 	deleteItem = (itemId) => {
-
 		this.props.deleteTodolist(itemId);
-		// if ( this.state.todolists.length - 1 !== 0 ) {
-		// 	this.setState ({
-		// 		isTodo: true,
-		// 		todolists: this.state.todolists.filter (todo => todo.id !== itemId)
-		// 	}, () => {
-		// 		this.setState ({
-		// 			todolists: this.state.todolists.map ((todo, index) => {
-		// 				if ( index === this.state.todolists.length - 1 ) {
-		// 					return { ...todo, display: true, selectItem: true }
-		// 				} else {
-		// 					return { ...todo, display: false, selectItem: false }
-		// 				}
-		// 			})
-		// 		}, () => this.saveState (this.state));
-		// 	});
-		// } else {
-		// 	this.setState ({
-		// 		todolists: this.state.todolists.filter (todo => todo.id !== itemId),
-		// 		isTodo: false
-		// 	}, () => {
-		// 		this.saveState (this.state);
-		// 	});
-		// }
 	};
 
 
@@ -187,10 +81,9 @@ class App extends React.Component {
 			<div className='main_page'>
 				{this.props.loading ? <Loader/> :
 					<div className='main_page__wrap'>
-						<SideBar errorTitle={this.props.errorTitle} todolists={this.props.todolists}
-								 choiceItem={this.choiceItem}
-								 deleteItem={this.deleteItem} onAddItemKeyPress={this.onAddItemKeyPress}
-								 onTitleItemChange={this.onTitleItemChange} titleItem={this.props.titleItem}
+						<SideBar choiceItem={this.choiceItem} deleteItem={this.deleteItem}
+								 onAddItemKeyPress={this.onAddItemKeyPress}
+								 onTitleItemChange={this.onTitleItemChange}
 								 onAddItemClick={this.onAddItemClick}/>
 						<div className='join'></div>
 						<div className='wrap_items'>
@@ -211,18 +104,19 @@ const mapStateToProps = (state) => {
 	return {
 		todolists: state.todolists,
 		loading: state.loading,
-		nextTaskId: state.nextTaskId,
+		nextTodolistId: state.nextTodolistId,
 		isTodo: state.isTodo,
-		titleItem: state.titleItem
+		titleItem: state.titleItem,
+
 	}
 };
 const mapDispatchToProps = (dispatch) => {
 	return {
-		addTodolist: (todolist,nextTaskId) => {
+		addTodolist: (todolist,nextTodolistId) => {
 			const action = {
 				type: "ADD-TODOLIST",
 				todolist: todolist,
-				nextTaskId: nextTaskId
+				nextTodolistId: nextTodolistId
 			};
 			dispatch (action)
 		},

@@ -1,12 +1,10 @@
 import React from 'react';
 import styles from './SideBar.module.css';
 import CreateItemTitle from "./CreateItem/CreateItemTitle";
+import { connect } from "react-redux";
 
 
 class SideBar extends React.Component {
-	constructor (props) {
-		super (props);
-	}
 
 	render () {
 		let itemTitleList = this.props.todolists.map (el =>
@@ -34,4 +32,20 @@ class SideBar extends React.Component {
 	}
 }
 
-export default SideBar;
+const mapStateToProps = (state) =>{
+	return {
+		todolists: state.todolists,
+		errorTitle: state.errorTitle,
+		titleItem: state.titleItem
+	}
+};
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+
+	}
+};
+
+
+const ConnectedSidebar = connect(mapStateToProps,mapDispatchToProps)(SideBar);
+export default ConnectedSidebar;

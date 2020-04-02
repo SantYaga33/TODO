@@ -6,9 +6,47 @@ const initialState = {
 	],
 	errorTitle: false,
 	titleItem: '',
-	nextTaskId: 1,
+	nextTodolistId: 1,
 	loading: true,
-	isTodo: true
+	isTodo: true,
+	tasks: [
+		{
+			id: 0,
+			title: 'Example',
+			isDone: false,
+			priority: 'high',
+			date: {
+				createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+				updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+				finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
+			}
+		},
+		{
+			id: 1,
+			title: 'Example',
+			isDone: false,
+			priority: 'low',
+			date: {
+				createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+				updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+				finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
+			}
+		},
+		{
+			id: 2,
+			title: 'Example',
+			isDone: true,
+			priority: 'medium',
+			date: {
+				createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+				updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+				finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
+			}
+		},
+	],
+	filterValue: "All",
+	nextTaskId: 3,
+
 };
 
 const reducer = (state = initialState, action) => {
@@ -30,7 +68,7 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				todolists: newTodolists,
-				nextTaskId: action.nextTaskId + 1,
+				nextTodolistId: action.nextTodolistId + 1,
 				isTodo: true
 			};
 
