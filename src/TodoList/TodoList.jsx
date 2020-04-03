@@ -6,14 +6,7 @@ import Root from "./../Todo/Root";
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { repository } from "../Repository";
 import { connect } from "react-redux";
-import {
-	ADD_TASK,
-	addTaskStoreAC,
-	CHANGE_FILTER_VALUE,
-	CHANGE_TASK, changeFilterStoreAC, changeTaskStoreAC,
-	DELETE_TASK,
-	deleteTaskStoreAC
-} from "../Redux/reducer";
+import {addTaskStoreAC, changeFilterStoreAC, changeTaskStoreAC,	deleteTaskStoreAC} from "../Redux/reducer";
 
 library.add (fab, faTrashAlt);
 
