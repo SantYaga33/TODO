@@ -40,12 +40,6 @@ const mapStateToProps = (state) =>{
 	}
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
+const ConnectedSidebar = connect(mapStateToProps)(SideBar);
 
-	}
-};
-
-
-const ConnectedSidebar = connect(mapStateToProps,mapDispatchToProps)(SideBar);
 export default ConnectedSidebar;

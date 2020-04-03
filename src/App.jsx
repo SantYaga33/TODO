@@ -12,8 +12,8 @@ class App extends React.Component {
 
 	componentDidMount () {
 		setTimeout (() => {
-		this.props.setLoading(false);
-	}, 3000);
+			this.props.setLoading(false);
+		}, 3000);
 
 		this.restoreState ();
 
@@ -35,7 +35,8 @@ class App extends React.Component {
 			id: this.props.nextTodolistId,
 			titleItem: title,
 			display: false,
-			selectItem: false
+			selectItem: false,
+			tasks: []
 		};
 		this.props.addTodolist(todolist,this.props.nextTodolistId);
 
@@ -74,7 +75,7 @@ class App extends React.Component {
 
 	render () {
 		let todoListElements = this.props.todolists.map (td =>
-			<TodoList key={td.id} id={td.id} title={td.titleItem}
+			<TodoList key={td.id} id={td.id} title={td.titleItem} tasks={td.tasks}
 					  display={td.display ? 'display_block' : 'display_none'}/>);
 
 		return (
@@ -99,7 +100,6 @@ class App extends React.Component {
 	}
 }
 
-
 const mapStateToProps = (state) => {
 	return {
 		todolists: state.todolists,
@@ -110,6 +110,7 @@ const mapStateToProps = (state) => {
 
 	}
 };
+
 const mapDispatchToProps = (dispatch) => {
 	return {
 		addTodolist: (todolist,nextTodolistId) => {
@@ -165,4 +166,5 @@ const mapDispatchToProps = (dispatch) => {
 
 
 const ConnectedApp = connect(mapStateToProps,mapDispatchToProps)(App);
+
 export default ConnectedApp;

@@ -9,107 +9,50 @@ import { connect } from "react-redux";
 
 library.add (fab, faTrashAlt);
 
+
 class TodoList extends React.Component {
 
-	state = {
-		tasks: [
-			{
-				id: 0,
-				title: 'Example',
-				isDone: false,
-				priority: 'high',
-				date: {
-					createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
-					updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
-					finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
-				}
-			},
-			{
-				id: 1,
-				title: 'Example',
-				isDone: false,
-				priority: 'low',
-				date: {
-					createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
-					updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
-					finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
-				}
-			},
-			{
-				id: 2,
-				title: 'Example',
-				isDone: true,
-				priority: 'medium',
-				date: {
-					createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
-					updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
-					finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
-				}
-			},
-		],
-		filterValue: "All",
-		nextTaskId: 3,
-	};
-
 	componentDidMount () {
-		this.restoreState ();
-	};
+			this.restoreState ();
+		};
 
-	saveState = () => {
-		repository.saveTasks (this.state, this.props.id);
-	};
+		saveState = () => {
+			repository.saveTasks (this.state, this.props.id);
+		};
 
-	restoreState = () => {
-		let tasks = repository.getTasks (this.props.id);
-		if ( tasks !== null ) {
-			this.setState (tasks);
-		}
-	};
+		restoreState = () => {
+			let tasks = repository.getTasks (this.props.id);
+			if ( tasks !== null ) {
+				this.setState (tasks);
+			}
+		};
 
 	addTask = (title) => {
 		let newCreateDate = new Date ();
 		let newTask = {
-			id: this.state.nextTaskId,
+			id: this.props.nextTaskId,
 			title: title,
 			isDone: false,
 			priority: 'low',
 			date: { createDate: newCreateDate + '', updateDate: '', finishedDate: '' }
 		};
-
-		let newTasks = [ ...this.state.tasks, newTask ];
-		this.setState ({
-			tasks: newTasks,
-			nextTaskId: this.state.nextTaskId + 1,
-		}, () => {this.saveState (this.state);});
-
+		this.props.addTaskStore(newTask, this.props.id);
 	};
 
 	changeFilter = (newFilterValue) => {
-		this.setState ({
-			filterValue: newFilterValue
-		}, () => {this.saveState (this.state);})
+		this.props.changeFilterStore(newFilterValue);
 	};
+
 	changeTask = (taskId, obj) => {
-		let newTasks = this.state.tasks.map (t => {
-			if ( t.id === taskId ) {
-				return { ...t, ...obj }
-			} else {
-				return t
-			}
-		});
-		this.setState ({
-			tasks: newTasks
-		}, () => {this.saveState (this.state);})
+		this.props.changeTaskStore(taskId, obj, this.props.id);
 	};
 
 	changeStatus = (taskId, isDone) => {
 		let newFinishedDate = new Date ();
-		let newTask = this.state.tasks.find ((task) => {
+		let newTask = this.props.tasks.find ((task) => {
 			return task.id === taskId
-		})
+		});
 		let newTaskDate = { ...newTask.date, finishedDate: newFinishedDate + '' };
-
-
 		this.changeTask (taskId,
 			{
 				isDone: isDone,
@@ -118,22 +61,19 @@ class TodoList extends React.Component {
 	};
 	changeTitle = (taskId, title) => {
 		let newUpdateDate = new Date ();
-		let newTask = this.state.tasks.find ((task) => {
+		let newTask = this.props.tasks.find ((task) => {
 			return task.id === taskId
 		});
 		let newTaskDate = { ...newTask.date, updateDate: newUpdateDate + '' };
 		this.changeTask (taskId, { title: title, date: newTaskDate });
 	};
+
 	changePriority = (taskId, priority) => {
 		this.changeTask (taskId, { priority: priority });
-
 	};
 
 	deleteTask = (taskId) => {
-		let newTasks = this.state.tasks.filter (t => t.id !== taskId);
-		this.setState ({
-			tasks: newTasks
-		}, () => {this.saveState (this.state);})
+		this.props.deleteTaskStore(taskId, this.props.id);
 	};
 
 	render = () => {
@@ -143,10 +83,10 @@ class TodoList extends React.Component {
 					<Root state={this.state} addTask={this.addTask} changeFilter={this.changeFilter} id={this.props.id}
 						  changeTitle={this.changeTitle} changeStatus={this.changeStatus} deleteTask={this.deleteTask}
 						  changePriority={this.changePriority} title={this.props.title} display={this.props.display}
-						  tasks={this.state.tasks.filter (t => {
-							  return this.state.filterValue === "Active" && t.isDone === false ||
-								  this.state.filterValue === "Completed" && t.isDone === true ||
-								  this.state.filterValue === "All"
+						  tasks={this.props.tasks.filter (t => {
+							  return this.props.filterValue === "Active" && t.isDone === false ||
+								  this.props.filterValue === "Completed" && t.isDone === true ||
+								  this.props.filterValue === "All"
 						  })}/>
 				</div>
 			</div>
@@ -154,12 +94,51 @@ class TodoList extends React.Component {
 	};
 }
 
+
 const mapStateToProps = (state) => {
-	return {}
+	return {
+		filterValue: state.filterValue,
+		nextTaskId: state.nextTaskId
+	}
 };
+
 const mapDispatchToProps = (dispatch) => {
-    return {}
+    return {
+		addTaskStore: (newTask, todolistId) => {
+			const action = {
+				type: "ADD-TASK",
+				newTask: newTask,
+				todolistId: todolistId
+			};
+			dispatch (action)
+		},
+		deleteTaskStore: (taskId, todolistId) => {
+			const action = {
+				type: "DELETE-TASK",
+				taskId: taskId,
+				todolistId: todolistId
+			};
+			dispatch (action)
+		},
+		changeTaskStore: (taskId, obj, todolistId) => {
+			const action = {
+				type: "CHANGE-TASK",
+				taskId: taskId,
+				obj: obj,
+				todolistId: todolistId
+			};
+			dispatch (action)
+		},
+		changeFilterStore: (newFilterValue) => {
+			const action = {
+				type: "CHANGE-FILTER-VALUE",
+				newFilterValue: newFilterValue
+			};
+			dispatch (action)
+		},
+	}
 };
 
 const ConnectedTodoList = connect (mapStateToProps, mapDispatchToProps) (TodoList);
+
 export default ConnectedTodoList;

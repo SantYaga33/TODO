@@ -2,48 +2,49 @@ import { createStore } from "redux";
 
 const initialState = {
 	todolists: [
-		{ id: 0, titleItem: 'My notice', display: true, selectItem: true },
+		{
+			id: 0, titleItem: 'My notice', display: true, selectItem: true, tasks: [
+				{
+					id: 0,
+					title: 'Example',
+					isDone: false,
+					priority: 'high',
+					date: {
+						createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+						updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+						finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
+					}
+				},
+				{
+					id: 1,
+					title: 'Example',
+					isDone: false,
+					priority: 'low',
+					date: {
+						createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+						updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+						finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
+					}
+				},
+				{
+					id: 2,
+					title: 'Example',
+					isDone: true,
+					priority: 'medium',
+					date: {
+						createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+						updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+						finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
+					}
+				},
+			],
+		},
 	],
 	errorTitle: false,
 	titleItem: '',
 	nextTodolistId: 1,
 	loading: true,
 	isTodo: true,
-	tasks: [
-		{
-			id: 0,
-			title: 'Example',
-			isDone: false,
-			priority: 'high',
-			date: {
-				createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
-				updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
-				finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
-			}
-		},
-		{
-			id: 1,
-			title: 'Example',
-			isDone: false,
-			priority: 'low',
-			date: {
-				createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
-				updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
-				finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
-			}
-		},
-		{
-			id: 2,
-			title: 'Example',
-			isDone: true,
-			priority: 'medium',
-			date: {
-				createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
-				updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
-				finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
-			}
-		},
-	],
 	filterValue: "All",
 	nextTaskId: 3,
 
@@ -57,7 +58,7 @@ const reducer = (state = initialState, action) => {
 
 			let newTodolists = [ ...state.todolists, action.todolist ].map (
 				(todo, index) => {
-					if ( index === state.todolists.length  ) {
+					if ( index === state.todolists.length ) {
 						return { ...todo, display: true, selectItem: true }
 					} else {
 						return { ...todo, display: false, selectItem: false }
@@ -120,8 +121,8 @@ const reducer = (state = initialState, action) => {
 		case 'DELETE_TODOLIST':
 
 			if ( state.todolists.length - 1 !== 0 ) {
-				let	todolistFilter = [...state.todolists].filter (todo => todo.id !== action.itemId);
-				console.log(todolistFilter);
+				let todolistFilter = [ ...state.todolists ].filter (todo => todo.id !== action.itemId);
+				console.log (todolistFilter);
 				let newtodolists = todolistFilter.map ((todo, index) => {
 					if ( index === todolistFilter.length - 1 ) {
 						return { ...todo, display: true, selectItem: true }
@@ -129,20 +130,75 @@ const reducer = (state = initialState, action) => {
 						return { ...todo, display: false, selectItem: false }
 					}
 				});
-				console.log(newtodolists);
+				console.log (newtodolists);
 				return {
 					...state,
-						todolists:newtodolists,
-						isTodo: true
-					}
+					todolists: newtodolists,
+					isTodo: true
+				}
 			} else {
-				return{
+				return {
 					...state,
 					isTodo: false,
-					todolists: [...state.todolists].filter (todo => todo.id !== action.itemId)
+					todolists: [ ...state.todolists ].filter (todo => todo.id !== action.itemId)
 				}
 
 			}
+
+		case  'ADD-TASK':
+
+			return {
+				...state,
+				todolists: state.todolists.map (tl => {
+					if ( tl.id === action.todolistId ) {
+						return { ...tl, tasks: [ ...tl.tasks, action.newTask ] }
+					} else {
+						return tl
+					}
+
+				}),
+				nextTaskId: state.nextTaskId+1
+			};
+
+		case  'DELETE-TASK':
+
+			return {
+				...state,
+				todolists: state.todolists.map (tl => {
+					if ( tl.id === action.todolistId ) {
+						return { ...tl, tasks: [ ...tl.tasks ].filter (t => t.id !== action.taskId) }
+					} else {
+						return tl
+					}
+				})
+			};
+		case  'CHANGE-TASK':
+
+			return {
+				...state,
+				todolists: state.todolists.map (tl => {
+					if ( tl.id === action.todolistId ) {
+						return {
+							...tl, tasks: [ ...tl.tasks ].map (t => {
+								if ( t.id === action.taskId ) {
+									return { ...t, ...action.obj }
+								} else {
+									return t
+								}
+							})
+						}
+					} else {
+						return tl
+					}
+				})
+			};
+
+		case  'CHANGE-FILTER-VALUE':
+
+			return {
+				...state,
+				filterValue: action.newFilterValue
+			};
 
 		default:
 
@@ -151,6 +207,6 @@ const reducer = (state = initialState, action) => {
 
 };
 
-
 const store = createStore (reducer);
+
 export default store;
