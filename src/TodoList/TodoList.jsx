@@ -6,6 +6,14 @@ import Root from "./../Todo/Root";
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { repository } from "../Repository";
 import { connect } from "react-redux";
+import {
+	ADD_TASK,
+	addTaskStoreAC,
+	CHANGE_FILTER_VALUE,
+	CHANGE_TASK, changeFilterStoreAC, changeTaskStoreAC,
+	DELETE_TASK,
+	deleteTaskStoreAC
+} from "../Redux/reducer";
 
 library.add (fab, faTrashAlt);
 
@@ -105,35 +113,19 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
 		addTaskStore: (newTask, todolistId) => {
-			const action = {
-				type: "ADD-TASK",
-				newTask: newTask,
-				todolistId: todolistId
-			};
+			const action = addTaskStoreAC(newTask, todolistId);
 			dispatch (action)
 		},
 		deleteTaskStore: (taskId, todolistId) => {
-			const action = {
-				type: "DELETE-TASK",
-				taskId: taskId,
-				todolistId: todolistId
-			};
+			const action = deleteTaskStoreAC(taskId, todolistId);
 			dispatch (action)
 		},
 		changeTaskStore: (taskId, obj, todolistId) => {
-			const action = {
-				type: "CHANGE-TASK",
-				taskId: taskId,
-				obj: obj,
-				todolistId: todolistId
-			};
+			const action = changeTaskStoreAC(taskId, obj, todolistId);
 			dispatch (action)
 		},
 		changeFilterStore: (newFilterValue) => {
-			const action = {
-				type: "CHANGE-FILTER-VALUE",
-				newFilterValue: newFilterValue
-			};
+			const action = changeFilterStoreAC(newFilterValue);
 			dispatch (action)
 		},
 	}
