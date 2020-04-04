@@ -178,7 +178,7 @@ const reducer = (state = initialState, action) => {
 						return { ...todo, display: false, selectItem: false }
 					}
 				});
-				console.log (newtodolists);
+
 				return {
 					...state,
 					todolists: newtodolists,
