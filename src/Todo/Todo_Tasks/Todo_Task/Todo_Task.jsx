@@ -41,7 +41,7 @@ class TodoTask extends React.Component {
 	};
 	render = () => {
 		return (
-			<div className={styles.tasks_item} id={this.props.id} data-priority={this.props.priority}>
+			<div className={styles.tasks_item} data-priority={this.props.priority}>
 				{/** ===== tooltip ===== * */}
 
 				{/*<div className={styles.tooltip}>*/}
@@ -83,7 +83,7 @@ class TodoTask extends React.Component {
 				</div>
 				<div className={styles.task_done}>
 					<input type="checkbox" checked={this.props.task.isDone}
-						   onChange={this.onIsDoneChanges}/>
+						   onChange={this.onIsDoneChanges} id={this.props.id}/> <label htmlFor={this.props.id}></label>
 				</div>
 				<div className={styles.task_delete}>
 					<button onClick={this.onDeleteTask}>del</button>

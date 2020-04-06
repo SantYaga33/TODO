@@ -1,7 +1,7 @@
 .tasks_wrap {
     height: 500px;
-    overflow-y: overlay;
-    /*overflow-y: auto;*/
+    /*overflow-y: overlay;*/
+    overflow-y: auto;
     width: 100%;
     position: relative;
     display: flex;

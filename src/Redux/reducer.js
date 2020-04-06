@@ -54,7 +54,7 @@ const initialState = {
 		{
 			id: 0, titleItem: 'My notice', display: true, selectItem: true, tasks: [
 				{
-					id: 0,
+					id: 1,
 					title: 'Example',
 					isDone: false,
 					priority: 'high',
@@ -65,7 +65,7 @@ const initialState = {
 					}
 				},
 				{
-					id: 1,
+					id: 2,
 					title: 'Example',
 					isDone: false,
 					priority: 'low',
@@ -76,7 +76,7 @@ const initialState = {
 					}
 				},
 				{
-					id: 2,
+					id: 3,
 					title: 'Example',
 					isDone: true,
 					priority: 'medium',
@@ -95,7 +95,7 @@ const initialState = {
 	loading: true,
 	isTodo: true,
 	filterValue: "All",
-	nextTaskId: 3,
+	nextTaskId: 4,
 };
 
 const reducer = (state = initialState, action) => {
@@ -190,7 +190,6 @@ const reducer = (state = initialState, action) => {
 					isTodo: false,
 					todolists: [ ...state.todolists ].filter (todo => todo.id !== action.itemId)
 				}
-
 			}
 
 		case  ADD_TASK:

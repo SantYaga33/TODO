@@ -196,6 +196,14 @@
     justify-content: center;
 }
 
+.checkbox__wrap {
+    display: flex;
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    width: 15px;
+    height: 15px;
+}
+
 .task_done input {
     width: 100%;
 }
@@ -341,5 +349,85 @@
 
 .top:hover {
     transform: translateY(-6px);
+}
+
+/*===== кастомные чекбоксы стили =====*/
+input[type="checkbox"]:checked,
+input[type="checkbox"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+
+input[type="checkbox"]:checked + label,
+input[type="checkbox"]:not(:checked) + label {
+    /*display: inline-block;*/
+    position: relative;
+    padding-left: 28px;
+    line-height: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+input[type="checkbox"]:checked + label:before,
+input[type="checkbox"]:not(:checked) + label:before {
+    content: "";
+    position: absolute;
+    /*left: 0px;*/
+    /*top: 0px;*/
+    /*width: 18px;*/
+    /*height: 18px;*/
+    border: 1px solid #088dcd;
+    background-color: #088dcd;
+
+    border-radius: 2px;
+    left: 25%;
+    top: 40%;
+    width: 50%;
+    height: 20%;
+    box-sizing: border-box;
+}
+
+input[type="checkbox"]:checked + label:before,
+input[type="checkbox"]:not(:checked) + label:before {
+    border-radius: 2px;
+}
+
+input[type="checkbox"]:checked + label:after,
+input[type="checkbox"]:not(:checked) + label:after {
+    content: "";
+    position: absolute;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+input[type="checkbox"]:checked + label:after,
+input[type="checkbox"]:not(:checked) + label:after {
+    left: 30%;
+    top: 38%;
+    width: 13px;
+    height: 5px;
+    border-radius: 1px;
+    border-left: 4px solid red;
+    border-bottom: 4px solid red;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    /*transform: rotate(-45deg);*/
+}
+
+
+input[type="checkbox"]:not(:checked) + label:after {
+    opacity: 0;
+}
+
+input[type="checkbox"]:checked + label:after {
+    opacity: 1;
 }
 
