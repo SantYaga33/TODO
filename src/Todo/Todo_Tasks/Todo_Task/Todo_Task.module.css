@@ -36,7 +36,7 @@
     height: 100%;
     box-sizing: border-box;
     width: 66%;
-    height: 100%;
+
 }
 
 .tasks_title__wrap .task_title {
@@ -360,7 +360,6 @@ input[type="checkbox"]:not(:checked) {
 
 input[type="checkbox"]:checked + label,
 input[type="checkbox"]:not(:checked) + label {
-    /*display: inline-block;*/
     position: relative;
     padding-left: 28px;
     line-height: 20px;
@@ -375,13 +374,8 @@ input[type="checkbox"]:checked + label:before,
 input[type="checkbox"]:not(:checked) + label:before {
     content: "";
     position: absolute;
-    /*left: 0px;*/
-    /*top: 0px;*/
-    /*width: 18px;*/
-    /*height: 18px;*/
     border: 1px solid #088dcd;
     background-color: #088dcd;
-
     border-radius: 2px;
     left: 25%;
     top: 40%;
@@ -419,9 +413,7 @@ input[type="checkbox"]:not(:checked) + label:after {
     -moz-transform: rotate(-45deg);
     -o-transform: rotate(-45deg);
     -ms-transform: rotate(-45deg);
-    /*transform: rotate(-45deg);*/
 }
-
 
 input[type="checkbox"]:not(:checked) + label:after {
     opacity: 0;
@@ -430,4 +422,5 @@ input[type="checkbox"]:not(:checked) + label:after {
 input[type="checkbox"]:checked + label:after {
     opacity: 1;
 }
+/*===== кастомные чекбоксы стили =====*/
 
