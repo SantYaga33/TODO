@@ -74,7 +74,10 @@ class TodoTasks extends React.Component {
 						<button className={styles.tasks_button} onClick={this.onAddTaskClick}>add</button>
 					</div>
 				</div>
-				{tasksElements}
+				<ul className={styles.items__wrap}>
+					{tasksElements}
+				</ul>
+
 			</div>
 		);
 	};

@@ -41,7 +41,7 @@ class TodoTask extends React.Component {
 	};
 	render = () => {
 		return (
-			<div className={styles.tasks_item} data-priority={this.props.priority}>
+			<li className={styles.tasks_item} data-priority={this.props.priority}>
 				{/** ===== tooltip ===== * */}
 
 				{/*<div className={styles.tooltip}>*/}
@@ -68,7 +68,9 @@ class TodoTask extends React.Component {
 					}
 					<div className={this.props.priority === 'high' ? classNames (styles.liquid, styles.liquid_red)
 						: this.props.priority === 'medium' ? classNames (styles.liquid, styles.liquid_green) :
-							classNames (styles.liquid, styles.liquid_yellow)}></div>
+							classNames (styles.liquid, styles.liquid_yellow)}>
+
+					</div>
 				</div>
 				<div className={styles.task_buttons}>
 					<button className={styles.task_button__red}
@@ -88,7 +90,7 @@ class TodoTask extends React.Component {
 				<div className={styles.task_delete}>
 					<button onClick={this.onDeleteTask}>del</button>
 				</div>
-			</div>
+			</li>
 		);
 	};
 }

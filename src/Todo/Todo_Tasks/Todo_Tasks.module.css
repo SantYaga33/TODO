@@ -3,8 +3,7 @@
     /*overflow-y: overlay;*/
     /*overflow-y: scroll;*/
     -webkit-overflow-scrolling: touch;
-
-
+    overflow: hidden;
     overflow-y: auto;
     width: 100%;
     position: relative;
@@ -106,6 +105,22 @@
     -webkit-animation-iteration-count: 1;
     animation-iteration-count: 1;
 }
+.items__wrap {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    border: 1px solid transparent;
+    margin: 0;
+    list-style: none;
+    padding: 10px;
+    padding-top: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    overflow-y: auto;
+
+}
+
 
 /*=======*/
 .tasks_item {
