@@ -152,7 +152,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 
-
 const ConnectedApp = connect(mapStateToProps,mapDispatchToProps)(App);
 
 export default ConnectedApp;
