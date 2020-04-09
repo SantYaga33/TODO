@@ -6,7 +6,7 @@ import Root from "./../Todo/Root";
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 import { repository } from "../Repository";
 import { connect } from "react-redux";
-import {addTaskStoreAC, changeFilterStoreAC, changeTaskStoreAC,	deleteTaskStoreAC} from "../Redux/reducer";
+import {addTaskStore, changeFilterStore, changeTaskStore, deleteTaskStore} from "../Redux/reducer";
 
 library.add (fab, faTrashAlt);
 
@@ -103,27 +103,8 @@ const mapStateToProps = (state) => {
 	}
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-		addTaskStore: (newTask, todolistId) => {
-			const action = addTaskStoreAC(newTask, todolistId);
-			dispatch (action)
-		},
-		deleteTaskStore: (taskId, todolistId) => {
-			const action = deleteTaskStoreAC(taskId, todolistId);
-			dispatch (action)
-		},
-		changeTaskStore: (taskId, obj, todolistId) => {
-			const action = changeTaskStoreAC(taskId, obj, todolistId);
-			dispatch (action)
-		},
-		changeFilterStore: (newFilterValue) => {
-			const action = changeFilterStoreAC(newFilterValue);
-			dispatch (action)
-		},
-	}
-};
 
-const ConnectedTodoList = connect (mapStateToProps, mapDispatchToProps) (TodoList);
+const ConnectedTodoList = connect (mapStateToProps,
+	{addTaskStore, changeFilterStore, changeTaskStore,deleteTaskStore}) (TodoList);
 
 export default ConnectedTodoList;

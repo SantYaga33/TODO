@@ -10,40 +10,40 @@ export const CHANGE_TASK = 'CHANGE_TASK';
 export const CHANGE_FILTER_VALUE = 'CHANGE_FILTER_VALUE';
 
 
-export const addTodoListAC = (todolist,nextTodolistId) => {
+export const addTodoList = (todolist,nextTodolistId) => {
 	return { type: ADD_TODOLIST, todolist, nextTodolistId }
 };
 
-export const setLoadingAC = (loading) => {
+export const setLoading = (loading) => {
 	return { type: SET_LOADING, loading }
 };
 
-export const setTodolistTitleAC = (titleItem) => {
+export const setTodolistTitle = (titleItem) => {
 	return { type: SET_TITLE_TODOLIST, titleItem }
 };
 
-export const addTodolistClickAC = (newTitleItem) => {
+export const addTodolistClick = (newTitleItem) => {
 	return { type: ADD_TODOLIST_CLICK, newTitleItem}
 };
 
-export const choiceTodoListAC = (itemId) => {
+export const choiceTodoList = (itemId) => {
 	return { type: CHOICE_TODOLIST, itemId}
 };
 
-export const deleteTodolistAC = (itemId) => {
+export const deleteTodolist = (itemId) => {
 	return { type: DELETE_TODOLIST, itemId}
 };
 
-export const addTaskStoreAC = (newTask, todolistId) => {
+export const addTaskStore = (newTask, todolistId) => {
 	return { type: ADD_TASK, newTask, todolistId }
 };
-export const deleteTaskStoreAC = (taskId, todolistId) => {
+export const deleteTaskStore = (taskId, todolistId) => {
 	return { type: DELETE_TASK, taskId, todolistId}
 };
-export const changeTaskStoreAC = (taskId, obj, todolistId) => {
+export const changeTaskStore = (taskId, obj, todolistId) => {
 	return { type: CHANGE_TASK, taskId, obj, todolistId}
 };
-export const changeFilterStoreAC = (newFilterValue) => {
+export const changeFilterStore = (newFilterValue) => {
 	return { type: CHANGE_FILTER_VALUE, newFilterValue}
 };
 

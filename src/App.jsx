@@ -6,14 +6,7 @@ import SideBar from "./SideBar/SideBar";
 import WelcomePage from "./WelcomePage/WelcomePage";
 import { repository } from "./Repository";
 import { connect } from "react-redux";
-import {
-	ADD_TODOLIST,
-	ADD_TODOLIST_CLICK, addTodoListAC, addTodolistClickAC,
-	CHOICE_TODOLIST, choiceTodoListAC,
-	DELETE_TODOLIST, deleteTodolistAC,
-	SET_LOADING,
-	SET_TITLE_TODOLIST, setLoadingAC, setTodolistTitleAC
-} from "./Redux/reducer";
+import { addTodoList, addTodolistClick, choiceTodoList, deleteTodolist, setLoading, setTodolistTitle} from "./Redux/reducer";
 
 
 class App extends React.Component {
@@ -46,7 +39,7 @@ class App extends React.Component {
 			selectItem: false,
 			tasks: []
 		};
-		this.props.addTodolist(todolist,this.props.nextTodolistId);
+		this.props.addTodoList(todolist,this.props.nextTodolistId);
 
 	};
 
@@ -119,39 +112,8 @@ const mapStateToProps = (state) => {
 	}
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		addTodolist: (todolist,nextTodolistId) => {
-			const action = addTodoListAC(todolist,nextTodolistId);
-			dispatch (action)
-		},
-		setLoading: (loading) => {
-			const action = setLoadingAC(loading);
-			dispatch (action)
-		},
-		setTodolistTitle: (titleItem) => {
-			const action = setTodolistTitleAC(titleItem);
 
-			dispatch (action)
-		},
-		addTodolistClick: (newTitleItem) => {
-			const action = addTodolistClickAC(newTitleItem);
-
-			dispatch (action)
-		},
-		choiceTodoList: (itemId) => {
-			const action = choiceTodoListAC(itemId);
-
-			dispatch (action)
-		},
-		deleteTodolist: (itemId) => {
-			const action = deleteTodolistAC(itemId);
-			dispatch (action)
-		}
-	}
-};
-
-
-const ConnectedApp = connect(mapStateToProps,mapDispatchToProps)(App);
+const ConnectedApp = connect(mapStateToProps,
+	{ addTodoList, addTodolistClick, choiceTodoList, deleteTodolist, setLoading, setTodolistTitle})(App);
 
 export default ConnectedApp;
