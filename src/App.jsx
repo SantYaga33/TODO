@@ -38,7 +38,7 @@ class App extends React.Component {
 		debugger
 		axios.get ("https://social-network.samuraijs.com/api/1.1/todo-lists", { withCredentials: true })
 			.then (res => {
-				this.props.setTodoLists(res.data);
+				// this.props.setTodoLists(res.data);
 				console.log (res.data);
 			});
 	};
