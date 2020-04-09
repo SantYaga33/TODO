@@ -6,14 +6,17 @@ import SideBar from "./SideBar/SideBar";
 import WelcomePage from "./WelcomePage/WelcomePage";
 import { repository } from "./Repository";
 import { connect } from "react-redux";
-import { addTodoList, addTodolistClick, choiceTodoList, deleteTodolist, setLoading, setTodolistTitle} from "./Redux/reducer";
+import axios from "axios";
+
+import {addTodoList,addTodolistClick,choiceTodoList,deleteTodolist, setLoading,	setTodolistTitle, setTodoLists
+} from "./Redux/reducer";
 
 
 class App extends React.Component {
 
 	componentDidMount () {
 		setTimeout (() => {
-			this.props.setLoading(false);
+			this.props.setLoading (false);
 		}, 3000);
 
 		this.restoreState ();
@@ -24,12 +27,22 @@ class App extends React.Component {
 		repository.saveTodoList (this.state);
 	};
 
+	// restoreState = () => {
+	// 	let todolists = repository.getTodoList ();
+	// 	if ( todolists !== null ) {
+	// 		this.setState (todolists);
+	// 	}
+	// };
+
 	restoreState = () => {
-		let todolists = repository.getTodoList ();
-		if ( todolists !== null ) {
-			this.setState (todolists);
-		}
+		debugger
+		axios.get ("https://social-network.samuraijs.com/api/1.1/todo-lists", { withCredentials: true })
+			.then (res => {
+				this.props.setTodoLists(res.data);
+				console.log (res.data);
+			});
 	};
+
 
 	addItem = (title) => {
 		let todolist = {
@@ -39,22 +52,22 @@ class App extends React.Component {
 			selectItem: false,
 			tasks: []
 		};
-		this.props.addTodoList(todolist,this.props.nextTodolistId);
+		this.props.addTodoList (todolist, this.props.nextTodolistId);
 
 	};
 
 	onAddItemClick = () => {
 		let newTitleItem = this.props.titleItem;
-		this.props.addTodolistClick(newTitleItem);
-		if (newTitleItem) {
+		this.props.addTodolistClick (newTitleItem);
+		if ( newTitleItem ) {
 			this.addItem (newTitleItem);
 		}
 	};
 	onAddItemKeyPress = (e) => {
 		let newTitleItem = this.props.titleItem;
 		if ( e.key === "Enter" ) {
-			this.props.addTodolistClick(newTitleItem);
-			if(newTitleItem) {
+			this.props.addTodolistClick (newTitleItem);
+			if ( newTitleItem ) {
 				this.addItem (newTitleItem);
 			}
 		}
@@ -62,15 +75,15 @@ class App extends React.Component {
 
 	onTitleItemChange = (e) => {
 		let titleItem = e.currentTarget.value
-		this.props.setTodolistTitle(titleItem);
+		this.props.setTodolistTitle (titleItem);
 	};
 
 	choiceItem = (itemId) => {
-		this.props.choiceTodoList(itemId);
+		this.props.choiceTodoList (itemId);
 	};
 
 	deleteItem = (itemId) => {
-		this.props.deleteTodolist(itemId);
+		this.props.deleteTodolist (itemId);
 	};
 
 
@@ -113,7 +126,8 @@ const mapStateToProps = (state) => {
 };
 
 
-const ConnectedApp = connect(mapStateToProps,
-	{ addTodoList, addTodolistClick, choiceTodoList, deleteTodolist, setLoading, setTodolistTitle})(App);
+const ConnectedApp = connect (mapStateToProps,
+	{ addTodoList, addTodolistClick, choiceTodoList, deleteTodolist, setLoading, setTodolistTitle,
+		setTodoLists}) (App);
 
 export default ConnectedApp;

@@ -8,32 +8,27 @@ export const ADD_TASK = 'ADD_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
 export const CHANGE_TASK = 'CHANGE_TASK';
 export const CHANGE_FILTER_VALUE = 'CHANGE_FILTER_VALUE';
+export const SET_TODOLISTS = 'SET_TODOLISTS';
 
 
 export const addTodoList = (todolist,nextTodolistId) => {
 	return { type: ADD_TODOLIST, todolist, nextTodolistId }
 };
-
 export const setLoading = (loading) => {
 	return { type: SET_LOADING, loading }
 };
-
 export const setTodolistTitle = (titleItem) => {
 	return { type: SET_TITLE_TODOLIST, titleItem }
 };
-
 export const addTodolistClick = (newTitleItem) => {
 	return { type: ADD_TODOLIST_CLICK, newTitleItem}
 };
-
 export const choiceTodoList = (itemId) => {
 	return { type: CHOICE_TODOLIST, itemId}
 };
-
 export const deleteTodolist = (itemId) => {
 	return { type: DELETE_TODOLIST, itemId}
 };
-
 export const addTaskStore = (newTask, todolistId) => {
 	return { type: ADD_TASK, newTask, todolistId }
 };
@@ -45,6 +40,9 @@ export const changeTaskStore = (taskId, obj, todolistId) => {
 };
 export const changeFilterStore = (newFilterValue) => {
 	return { type: CHANGE_FILTER_VALUE, newFilterValue}
+};
+export const setTodoLists = (todolists) => {
+	return { type: SET_TODOLISTS, todolists}
 };
 
 
@@ -93,7 +91,7 @@ const initialState = {
 	titleItem: '',
 	nextTodolistId: 1,
 	loading: true,
-	isTodo: true,
+	isTodo: false,
 	filterValue: "All",
 	nextTaskId: 4,
 };
@@ -245,6 +243,12 @@ const reducer = (state = initialState, action) => {
 			return {
 				...state,
 				filterValue: action.newFilterValue
+			};
+		case  SET_TODOLISTS:
+
+			return {
+				...state,
+				todolists: action.todolists
 			};
 
 		default:
