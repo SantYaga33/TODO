@@ -27,21 +27,20 @@ class App extends React.Component {
 		repository.saveTodoList (this.state);
 	};
 
-	// restoreState = () => {
-	// 	let todolists = repository.getTodoList ();
-	// 	if ( todolists !== null ) {
-	// 		this.setState (todolists);
-	// 	}
-	// };
-
 	restoreState = () => {
-		debugger
-		axios.get ("https://social-network.samuraijs.com/api/1.1/todo-lists", { withCredentials: true })
-			.then (res => {
-				// this.props.setTodoLists(res.data);
-				console.log (res.data);
-			});
+		let todolists = repository.getTodoList ();
+		if ( todolists !== null ) {
+			this.setState (todolists);
+		}
 	};
+
+	// restoreState = () => {
+	//
+	// 	axios.get ("https://social-network.samuraijs.com/api/1.1/todo-lists", { withCredentials: true })
+	// 		.then (res => {
+	// 			this.props.setTodoLists(res.data);
+	// 		});
+	// };
 
 
 	addItem = (title) => {
@@ -55,6 +54,20 @@ class App extends React.Component {
 		this.props.addTodoList (todolist, this.props.nextTodolistId);
 
 	};
+	// addItem = (title) => {
+	// 	axios.post ("https://social-network.samuraijs.com/api/1.1/todo-lists",
+	// 		{title:title},
+	// 		{
+	// 			withCredentials: true,
+	// 			headers:{'API-KEY':'ee6f2b26-8c6d-4680-bc97-a1aebe9730b2'}
+	// 		})
+	// 		.then (res => {
+	// 			let todolist = res.data.data.item;
+	// 			this.props.setTodoLists(todolist);
+	// 			console.log (todolist);
+	// 		});
+	//
+	// };
 
 	onAddItemClick = () => {
 		let newTitleItem = this.props.titleItem;

@@ -91,7 +91,7 @@ const initialState = {
 	titleItem: '',
 	nextTodolistId: 1,
 	loading: true,
-	isTodo: false,
+	isTodo: true,
 	filterValue: "All",
 	nextTaskId: 4,
 };
