@@ -95,7 +95,6 @@ class TodoList extends React.Component {
 	};
 }
 
-
 const mapStateToProps = (state) => {
 	return {
 		filterValue: state.filterValue,
