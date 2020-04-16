@@ -56,8 +56,8 @@ class TodoTask extends React.Component {
 				{/*</div>*/}
 
 				{/** ===== tooltip ===== * */}
-				<div className={styles.tasks_title__wrap}>
 
+				<div className={styles.tasks_title__wrap}>
 					{this.state.editMode
 						? <input className={styles.input_onblur} onBlur={this.deactivateEditMode}
 								 onChange={this.onTitleChange} type='text' maxLength="15"
