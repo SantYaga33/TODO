@@ -116,7 +116,7 @@ class App extends React.Component {
 						<div className='join'></div>
 						<div className='wrap_items'>
 							{this.props.isTodo ?
-								<div>{todoListElements}</div>
+								<>{todoListElements}</>
 								: <WelcomePage/>
 							}
 						</div>
