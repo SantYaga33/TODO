@@ -4,9 +4,9 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import Root from "./../Todo/Root";
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
-import { repository } from "../Repository";
+import { repository } from '../../Repository';
 import { connect } from "react-redux";
-import {addTaskStore, changeFilterStore, changeTaskStore, deleteTaskStore} from "../Redux/reducer";
+import {addTaskStore, changeFilterStore, changeTaskStore, deleteTaskStore} from '../../Redux/reducer';
 
 library.add (fab, faTrashAlt);
 

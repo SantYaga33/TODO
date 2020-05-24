@@ -1,3 +1,5 @@
+import { repository } from "../Repository";
+
 export const ADD_TODOLIST = 'ADD_TODOLIST';
 export const SET_LOADING = 'SET_LOADING';
 export const SET_TITLE_TODOLIST = 'SET_TITLE_TODOLIST';
@@ -46,8 +48,7 @@ export const setTodoLists = (todolists) => {
 };
 
 
-const initialState = {
-
+let initialState = {
 	todolists: [
 		{
 			id: 0, titleItem: 'My notice', display: true, selectItem: true, tasks: [
@@ -84,6 +85,50 @@ const initialState = {
 						finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
 					}
 				},
+				{
+					id: 4,
+					title: 'Example',
+					isDone: false,
+					priority: 'medium',
+					date: {
+						createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+						updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+						finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
+					}
+				},
+				{
+					id: 5,
+					title: 'Example',
+					isDone: false,
+					priority: 'low',
+					date: {
+						createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+						updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+						finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
+					}
+				},
+				{
+					id: 6,
+					title: 'Example',
+					isDone: true,
+					priority: 'high',
+					date: {
+						createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+						updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+						finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
+					}
+				},
+				{
+					id: 7,
+					title: 'Example',
+					isDone: true,
+					priority: 'medium',
+					date: {
+						createDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+						updateDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)',
+						finishedDate: 'Wed Mar 25 2020 18:21:54 GMT+0400 (Персидский залив)'
+					}
+				},
 			],
 		},
 	],
@@ -93,8 +138,11 @@ const initialState = {
 	loading: true,
 	isTodo: true,
 	filterValue: "All",
-	nextTaskId: 4,
+	nextTaskId: 8,
 };
+
+let localState = repository.getTodoList();
+initialState =  localState !== null ?  localState : initialState;
 
 const reducer = (state = initialState, action) => {
 
@@ -118,7 +166,6 @@ const reducer = (state = initialState, action) => {
 				nextTodolistId: action.nextTodolistId + 1,
 				isTodo: true
 			};
-
 		case SET_LOADING:
 
 			return {
@@ -131,7 +178,6 @@ const reducer = (state = initialState, action) => {
 				...state,
 				titleItem: action.titleItem
 			};
-
 		case ADD_TODOLIST_CLICK:
 
 			if ( action.newTitleItem === '' ) {
@@ -148,7 +194,6 @@ const reducer = (state = initialState, action) => {
 					titleItem: ''
 				}
 			}
-
 		case CHOICE_TODOLIST:
 			let todolistsChoice = [ ...state.todolists ].map (todo => {
 				if ( todo.id === action.itemId ) {
@@ -163,7 +208,6 @@ const reducer = (state = initialState, action) => {
 				todolists: todolistsChoice
 
 			};
-
 		case DELETE_TODOLIST:
 
 			if ( state.todolists.length - 1 !== 0 ) {
@@ -189,7 +233,6 @@ const reducer = (state = initialState, action) => {
 					todolists: [ ...state.todolists ].filter (todo => todo.id !== action.itemId)
 				}
 			}
-
 		case  ADD_TASK:
 
 			return {
@@ -204,7 +247,6 @@ const reducer = (state = initialState, action) => {
 				}),
 				nextTaskId: state.nextTaskId+1
 			};
-
 		case  DELETE_TASK:
 
 			return {
@@ -237,7 +279,6 @@ const reducer = (state = initialState, action) => {
 					}
 				})
 			};
-
 		case  CHANGE_FILTER_VALUE:
 
 			return {
@@ -252,10 +293,12 @@ const reducer = (state = initialState, action) => {
 			};
 
 		default:
-
 			return state;
 	}
 
 };
 
 export default reducer;
+
+
+
